@@ -7,3 +7,10 @@ node_modules/
 # Build outputs
 dist/
 build/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Python backend
+backend/.venv/
+backend/__pycache__/
