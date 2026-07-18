@@ -4,13 +4,15 @@ from sqlalchemy.orm import Session
 from app.core.security import hash_password
 from app.crud.user import create_user, get_user_by_email
 from app.db.database import get_db
-from app.schemas.user import UserCreate, UserResponse
+from app.schemas.user import (UserCreate, UserResponse, UserLogin, Token)
+from app.services.auth import authenticate_user
 
 router = APIRouter(
-    prefix="/users",
-    tags=["Users"],
+    prefix="/auth",
+    tags=["Authentication"]
 )
 
+# register api
 
 @router.post(
     "/register",
@@ -43,3 +45,19 @@ def register_user(
     )
 
     return new_user
+
+# login api 
+
+@router.post(
+    "/login",
+    response_model=Token,
+    status_code=status.HTTP_200_OK,
+)
+def login(
+    credentials: UserLogin,
+    db: Session = Depends(get_db),
+):
+    return authenticate_user(
+        db=db,
+        credentials=credentials,
+    )

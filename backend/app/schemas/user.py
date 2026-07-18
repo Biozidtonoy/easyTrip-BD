@@ -29,3 +29,21 @@ class UserResponse(BaseModel):
     is_active: bool
     created_at: datetime
     updated_at: datetime
+
+
+class UserLogin(BaseModel):
+    email: EmailStr = Field(
+        examples=["jhondoe@example.com"],
+    )
+
+    password: str = Field(
+        min_length=8,
+        examples=["Password123"],
+    )
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: str | None = None
