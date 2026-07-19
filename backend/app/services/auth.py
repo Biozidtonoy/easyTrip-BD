@@ -3,13 +3,13 @@ from sqlalchemy.orm import Session
 
 from app.core.security import create_access_token, verify_password
 from app.crud.user import get_user_by_email
-from app.schemas.user import Token, UserLogin
+from app.schemas.user import Token
 
 
-def authenticate_user(db: Session,credentials: UserLogin,) -> Token:
+def authenticate_user(db: Session,email: str,password: str,) -> Token:
     user = get_user_by_email(
         db,
-        credentials.email,
+        email,
     )
 
     if not user:
@@ -19,7 +19,7 @@ def authenticate_user(db: Session,credentials: UserLogin,) -> Token:
         )
 
     if not verify_password(
-        credentials.password,
+        password,
         user.hashed_password,
     ):
         raise HTTPException(
