@@ -1,5 +1,5 @@
 from pwdlib import PasswordHash
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from app.core.config import settings
@@ -13,8 +13,8 @@ from sqlalchemy.orm import Session
 from app.crud.user import get_user_by_email
 from app.db.database import get_db
 from app.models.user import User
-
-
+from app.enums.user_role import UserRole
+from collections.abc import Callable
 
 password_hash = PasswordHash.recommended()
 
@@ -82,3 +82,18 @@ def get_current_user(
         )
 
     return user
+
+def require_roles(*allowed_roles: UserRole) -> Callable:
+    def role_checker(
+        current_user: User = Depends(get_current_user),
+    ) -> User:
+
+        if current_user.role not in allowed_roles:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You do not have permission to perform this action.",
+            )
+
+        return current_user
+
+    return role_checker

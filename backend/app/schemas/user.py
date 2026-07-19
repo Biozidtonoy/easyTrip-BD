@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
-
+from app.enums.user_role import UserRole
 
 class UserCreate(BaseModel):
     name: str = Field(
@@ -26,6 +26,7 @@ class UserResponse(BaseModel):
     id: int
     name: str
     email: EmailStr
+    role: UserRole
     is_active: bool
     created_at: datetime
     updated_at: datetime
