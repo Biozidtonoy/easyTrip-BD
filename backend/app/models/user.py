@@ -2,6 +2,7 @@ from sqlalchemy import Boolean, String
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Enum
 from app.enums.user_role import UserRole
+from sqlalchemy.orm import relationship
 
 from app.models.base import BaseModel
 
@@ -36,4 +37,9 @@ class User(BaseModel):
         Boolean,
         default=True,
         nullable=False,
+    )
+    
+    hotels: Mapped[list["Hotel"]] = relationship(
+        back_populates="owner",
+        cascade="all, delete-orphan",
     )
