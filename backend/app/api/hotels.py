@@ -4,6 +4,8 @@ from app.db.database import get_db
 from app.core.security import get_current_user, require_roles
 from app.enums.user_role import UserRole
 from app.models.user import User
+from app.schemas.review import ReviewResponse
+from app.services.review import list_hotel_reviews_service
 from app.schemas.hotel import (
     HotelCreate,
     HotelUpdate,
@@ -77,3 +79,16 @@ def update_hotel(
 def delete_hotel(hotel_id: int,db: Session = Depends(get_db),current_user: User = Depends(require_roles(UserRole.HOTEL_OWNER)),) -> Response:
     delete_hotel_service(db, hotel_id, current_user)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+@router.get(
+    "/{hotel_id}/reviews",
+    response_model=list[ReviewResponse],
+)
+def get_hotel_reviews(
+    hotel_id: int,
+    db: Session = Depends(get_db),
+):
+    return list_hotel_reviews_service(
+        db,
+        hotel_id,
+    )

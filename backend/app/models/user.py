@@ -10,9 +10,9 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from app.models.hotel import Hotel
-
-if TYPE_CHECKING:
     from app.models.booking import Booking
+    from app.models.review import Review
+
 
 class User(BaseModel):
     __tablename__ = "users"
@@ -52,6 +52,11 @@ class User(BaseModel):
     )
 
     bookings: Mapped[list["Booking"]] = relationship(
+        back_populates="traveler",
+        cascade="all, delete-orphan",
+    )
+
+    reviews: Mapped[list["Review"]] = relationship(
         back_populates="traveler",
         cascade="all, delete-orphan",
     )
