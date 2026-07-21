@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
-
+from app.models.destination import Destination
 
 class Hotel(BaseModel):
     __tablename__ = "hotels"
@@ -39,5 +39,15 @@ class Hotel(BaseModel):
 
     owner = relationship(
         "User",
+        back_populates="hotels",
+    )
+
+    destination_id: Mapped[int] = mapped_column(
+        ForeignKey("destinations.id"),
+        nullable=False,
+    )
+
+    destination: Mapped["Destination"] = relationship(
+        "Destination",
         back_populates="hotels",
     )

@@ -9,6 +9,7 @@ class HotelCreate(BaseModel):
     address: str
     city: str
     district: str
+    destination_id: int
 
 
 class HotelUpdate(BaseModel):
@@ -17,7 +18,7 @@ class HotelUpdate(BaseModel):
     address: str | None = None
     city: str | None = None
     district: str | None = None
-
+    destination_id: int | None = None
 
 class HotelResponse(BaseModel):
     id: int
@@ -27,6 +28,7 @@ class HotelResponse(BaseModel):
     city: str
     district: str
     owner_id: int
+    destination_id: int
     created_at: datetime
     updated_at: datetime
 

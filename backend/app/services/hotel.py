@@ -5,7 +5,7 @@ from app.crud.hotel import create_hotel, get_hotel_by_id, update_hotel, get_hote
 from app.enums.user_role import UserRole
 from app.models.user import User
 from app.schemas.hotel import HotelCreate, HotelUpdate
-
+from app.crud.destination import get_destination_by_id
 
 def create_hotel_service(
     db: Session,
@@ -18,6 +18,16 @@ def create_hotel_service(
             detail="Only hotel owners can create hotels.",
         )
 
+    destination = get_destination_by_id(
+        db,
+        hotel_data.destination_id,
+    )
+
+    if destination is None:
+        raise HTTPException(
+        status_code=404,
+        detail="Destination not found.",
+    )
     return create_hotel(
         db=db,
         hotel_data=hotel_data,
@@ -68,6 +78,17 @@ def update_hotel_service(
             detail="You can only update your own hotels.",
         )
 
+    if hotel_data.destination_id is not None:
+        destination = get_destination_by_id(
+            db,
+            hotel_data.destination_id,
+        )
+
+        if destination is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Destination not found.",
+            )
     return update_hotel(
         db,
         hotel,
