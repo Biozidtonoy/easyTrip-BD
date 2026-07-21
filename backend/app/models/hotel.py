@@ -3,6 +3,12 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
 from app.models.destination import Destination
+from app.models.room import Room
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.room import Room
+
 
 class Hotel(BaseModel):
     __tablename__ = "hotels"
@@ -50,4 +56,9 @@ class Hotel(BaseModel):
     destination: Mapped["Destination"] = relationship(
         "Destination",
         back_populates="hotels",
+    )
+
+    rooms: Mapped[list["Room"]] = relationship(
+        back_populates="hotel",
+        cascade="all, delete-orphan",
     )
