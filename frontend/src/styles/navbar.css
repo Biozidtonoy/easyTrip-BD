@@ -1,0 +1,238 @@
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===============================
+   Logo
+================================= */
+
+.logo {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #15803d;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo span {
+    color: #16a34a;
+}
+
+/* ===============================
+   Navigation
+================================= */
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #16a34a;
+}
+
+/* ===============================
+   Right Buttons
+================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.partner-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.partner-btn:hover {
+    color: #16a34a;
+}
+
+.login-btn,
+.register-btn {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.login-btn {
+    border: 1px solid #16a34a;
+    color: #16a34a;
+}
+
+.login-btn:hover {
+    background: #16a34a;
+    color: white;
+}
+
+.register-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.register-btn:hover {
+    background: #15803d;
+}
+
+/* ===============================
+   Mobile Button
+================================= */
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===============================
+   Mobile Menu
+================================= */
+
+.mobile-menu {
+    display: none;
+}
+
+/* ===============================
+   Tablet
+================================= */
+
+
+.mobile-partner {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+
+.mobile-partner:hover {
+  color: #16a34a;
+}
+
+
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 10px;
+    }
+
+    .login-btn,
+    .register-btn {
+        padding: 4px 12px;
+    }
+    .logo{
+        font-size: 1.5rem;
+    }
+}
+
+/* ===============================
+   Mobile
+================================= */
+
+@media (max-width: 768px) {
+
+    .nav-links,
+    .nav-actions {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+
+        gap: 20px;
+
+        position: absolute;
+        left: 0;
+        top: 80px;
+
+        width: 100%;
+
+        background: white;
+
+        padding: 25px;
+
+        transform: translateY(-120%);
+        transition: 0.3s;
+        opacity: 0;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-menu a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 500;
+    }
+
+    .mobile-menu .login-btn,
+    .mobile-menu .register-btn {
+        width: fit-content;
+    }
+
+    .mobile-partner {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+
+        text-align: left;
+
+        font-size: 16px;
+        font-weight: 500;
+        font-weight: 900;
+        color: #222;
+
+        cursor: pointer;
+    }
+
+    .mobile-partner:hover {
+        color: #16a34a;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+}
