@@ -7,13 +7,15 @@ from app.api.auth import router as auth_router
 from app.api.users import router as users_router
 from app.api.hotels import router as hotel_router
 from app.api.destinations import router as destination_router
+from app.api.rooms import router as room_router
 
 app = FastAPI()
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(hotel_router)
 app.include_router(destination_router)
+app.include_router(room_router)
 
 @app.get("/")
 def root():
-    return {"message": "easytrip-bd"}
+    return {"message": "welcome to easytrip-bd backend service"}
