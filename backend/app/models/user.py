@@ -6,6 +6,13 @@ from sqlalchemy.orm import relationship
 
 from app.models.base import BaseModel
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.hotel import Hotel
+
+if TYPE_CHECKING:
+    from app.models.booking import Booking
 
 class User(BaseModel):
     __tablename__ = "users"
@@ -41,5 +48,10 @@ class User(BaseModel):
     
     hotels: Mapped[list["Hotel"]] = relationship(
         back_populates="owner",
+        cascade="all, delete-orphan",
+    )
+
+    bookings: Mapped[list["Booking"]] = relationship(
+        back_populates="traveler",
         cascade="all, delete-orphan",
     )
