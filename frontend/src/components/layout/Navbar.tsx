@@ -1,10 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+
 import "../../styles/navbar.css";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { user, isAuthenticated, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    setMenuOpen(false);
+    navigate("/");
+  };
 
   return (
     <header className="navbar">
@@ -23,27 +35,43 @@ const Navbar = () => {
           <Link to="/contact">Contact</Link>
         </nav>
 
-        {/* Desktop Buttons */}
+        {/* Desktop Actions */}
         <div className="nav-actions">
-          <Link
-            to="/partner"
-            className="mobile-partner"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link to="/partner" className="partner-btn">
             Become a Partner
           </Link>
 
-          <Link to="/login" className="login-btn">
-            Login
-          </Link>
+          {!isAuthenticated ? (
+            <>
+              <Link to="/login" className="login-btn">
+                Login
+              </Link>
 
-          <Link to="/register" className="register-btn">
-            Register
-          </Link>
+              <Link to="/register" className="register-btn">
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <span className="user-name">
+                Hi, {user?.name}
+              </span>
+
+              <button
+                className="logout-btn"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Mobile Menu Icon */}
-        <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+        {/* Mobile Menu Button */}
+        <button
+          className="menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -54,31 +82,74 @@ const Navbar = () => {
           Home
         </Link>
 
-        <Link to="/destinations" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/destinations"
+          onClick={() => setMenuOpen(false)}
+        >
           Destinations
         </Link>
 
-        <Link to="/hotels" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/hotels"
+          onClick={() => setMenuOpen(false)}
+        >
           Hotels
         </Link>
 
-        <Link to="/about" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/about"
+          onClick={() => setMenuOpen(false)}
+        >
           About Us
         </Link>
 
-        <Link to="/contact" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/contact"
+          onClick={() => setMenuOpen(false)}
+        >
           Contact
         </Link>
 
-        <button className="partner-btn mobile-partner">Become a Partner</button>
-
-        <Link to="/login" className="login-btn">
-          Login
+        <Link
+          to="/partner"
+          className="partner-btn mobile-partner"
+          onClick={() => setMenuOpen(false)}
+        >
+          Become a Partner
         </Link>
 
-        <Link to="/register" className="register-btn">
-          Register
-        </Link>
+        {!isAuthenticated ? (
+          <>
+            <Link
+              to="/login"
+              className="login-btn"
+              onClick={() => setMenuOpen(false)}
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="register-btn"
+              onClick={() => setMenuOpen(false)}
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <>
+            <div className="mobile-user-name">
+              Hi, {user?.name}
+            </div>
+
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
