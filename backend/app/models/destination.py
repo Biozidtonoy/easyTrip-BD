@@ -1,5 +1,6 @@
 from sqlalchemy import String, Text
-from sqlalchemy.orm import Mapped, mapped_column
+
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
 
@@ -26,4 +27,8 @@ class Destination(BaseModel):
     district: Mapped[str] = mapped_column(
         String(100),
         nullable=False,
+    )
+
+    hotels: Mapped[list["Hotel"]] = relationship(
+        back_populates="destination",
     )
