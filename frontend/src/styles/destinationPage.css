@@ -1,32 +1,121 @@
 .destination-page {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 3rem 1.5rem 4rem;
+    min-height: calc(100vh - 140px);
 }
 
 .destination-header {
-  margin-bottom: 48px;
+    margin-bottom: 3rem;
+    text-align: center;
 }
 
 .destination-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
 }
 
 .destination-header p {
+    max-width: 650px;
+    margin: 0 auto;
     color: #6b7280;
     font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 .destination-content {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 36px;
-    align-items: start;
+    width: 100%;
+}
+
+.destination-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 350px;
+
+    font-size: 1.1rem;
+    color: #6b7280;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+}
+
+.destination-message.error {
+    color: #dc2626;
 }
 
 .destination-pagination {
-  margin-top: 48px;
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+/* ==========================
+   Large Tablets
+========================== */
+
+@media (max-width: 992px) {
+
+    .destination-page {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .destination-header {
+        margin-bottom: 2.5rem;
+    }
+
+}
+
+/* ==========================
+   Tablets
+========================== */
+
+@media (max-width: 768px) {
+
+    .destination-page {
+        padding: 2rem 1rem;
+    }
+
+    .destination-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .destination-header p {
+        font-size: 1rem;
+    }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 576px) {
+
+    .destination-page {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .destination-header {
+        margin-bottom: 2rem;
+    }
+
+    .destination-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .destination-header p {
+        font-size: 0.95rem;
+    }
+
+    .destination-message {
+        min-height: 250px;
+        padding: 1rem;
+        text-align: center;
+    }
+
 }

@@ -1,5 +1,4 @@
 import DestinationCard from "./DestinationCard";
-
 import type { Destination } from "../../types/destination";
 
 import "../../styles/destinationGrid.css";
@@ -13,14 +12,12 @@ const DestinationGrid = ({
 }: DestinationGridProps) => {
   return (
     <section className="destination-grid">
-
       {destinations.map((destination) => (
         <DestinationCard
           key={destination.id}
           destination={destination}
         />
       ))}
-
     </section>
   );
 };

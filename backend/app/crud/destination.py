@@ -49,13 +49,18 @@ def update_destination(
     db: Session,
     destination: Destination,
     destination_data: DestinationUpdate,
+    image: str | None = None,
 ) -> Destination:
+
     update_data = destination_data.model_dump(
         exclude_unset=True
     )
 
     for field, value in update_data.items():
         setattr(destination, field, value)
+
+    if image is not None:
+        destination.image = image
 
     db.commit()
     db.refresh(destination)

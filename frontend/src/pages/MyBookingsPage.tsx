@@ -1,10 +1,9 @@
-import Navbar from "../components/layout/Navbar";
+
 import "../styles/myBookings.css";
 
 const MyBookingsPage = () => {
   return (
     <>
-    <Navbar/>
     <main className="my-bookings-page">
       <div className="my-bookings-container">
         <h1>My Bookings</h1>

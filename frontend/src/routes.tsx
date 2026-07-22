@@ -7,16 +7,70 @@ import ProfilePage from "./pages/ProfilePage";
 import MyBookingsPage from "./pages/MyBookingsPage";
 import OwnerDashboardPage from "./pages/OwnerDashboardPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
-
-// import ProtectedRoute from "./routes/ProtectedRoute";
+import DestinationDetailsPage from "./pages/DestinationDetailsPage";
 import RoleProtectedRoute from "./routes/RoleProtectedRoute";
+import MainLayout from "./components/layout/MainLayout";
 
 const routes = [
-  // ---------- Public Routes ----------
+  // ---------- Routes with Navbar & Footer ----------
   {
-    path: "/",
-    element: <HomePage />,
+    element: <MainLayout />,
+
+    children: [
+      // ---------- Public Routes ----------
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/destinations",
+        element: <DestinationPage />,
+      },
+
+      {
+        path: "/destinations/:id",
+        element: <DestinationDetailsPage />,
+      },
+      // ---------- Traveler Routes ----------
+      {
+        element: <RoleProtectedRoute allowedRoles={["traveler"]} />,
+        children: [
+          {
+            path: "/profile",
+            element: <ProfilePage />,
+          },
+          {
+            path: "/my-bookings",
+            element: <MyBookingsPage />,
+          },
+        ],
+      },
+
+      // ---------- Hotel Owner Routes ----------
+      {
+        element: <RoleProtectedRoute allowedRoles={["hotel_owner"]} />,
+        children: [
+          {
+            path: "/owner/dashboard",
+            element: <OwnerDashboardPage />,
+          },
+        ],
+      },
+
+      // ---------- Admin Routes ----------
+      {
+        element: <RoleProtectedRoute allowedRoles={["admin"]} />,
+        children: [
+          {
+            path: "/admin/dashboard",
+            element: <AdminDashboardPage />,
+          },
+        ],
+      },
+    ],
   },
+
+  // ---------- Authentication Routes ----------
   {
     path: "/login",
     element: <LoginPage />,
@@ -24,47 +78,6 @@ const routes = [
   {
     path: "/register",
     element: <RegisterPage />,
-  },
-  {
-    path: "/destinations",
-    element: <DestinationPage />,
-  },
-
-  // ---------- Traveler Routes ----------
-  {
-    element: <RoleProtectedRoute allowedRoles={["traveler"]} />,
-    children: [
-      {
-        path: "/profile",
-        element: <ProfilePage />,
-      },
-      {
-        path: "/my-bookings",
-        element: <MyBookingsPage />,
-      },
-    ],
-  },
-
-  // ---------- Hotel Owner Routes ----------
-  {
-    element: <RoleProtectedRoute allowedRoles={["hotel_owner"]} />,
-    children: [
-      {
-        path: "/owner/dashboard",
-        element: <OwnerDashboardPage />,
-      },
-    ],
-  },
-
-  // ---------- Admin Routes ----------
-  {
-    element: <RoleProtectedRoute allowedRoles={["admin"]} />,
-    children: [
-      {
-        path: "/admin/dashboard",
-        element: <AdminDashboardPage />,
-      },
-    ],
   },
 ];
 

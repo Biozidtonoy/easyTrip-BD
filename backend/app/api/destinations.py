@@ -78,14 +78,38 @@ def get_destination(
 )
 def update_destination(
     destination_id: int,
-    destination_data: DestinationUpdate,
+
+    name: str | None = Form(None),
+    description: str | None = Form(None),
+    division: str | None = Form(None),
+    district: str | None = Form(None),
+
+    image: UploadFile | None = File(None),
+
     db: Session = Depends(get_db),
     current_user=Depends(require_roles(UserRole.ADMIN)),
 ):
+    update_data = {}
+
+    if name is not None:
+        update_data["name"] = name
+
+    if description is not None:
+        update_data["description"] = description
+
+    if division is not None:
+        update_data["division"] = division
+
+    if district is not None:
+        update_data["district"] = district
+
+    destination_data = DestinationUpdate(**update_data)
+
     return update_destination_service(
         db=db,
         destination_id=destination_id,
         destination_data=destination_data,
+        image=image,
     )
 
 
