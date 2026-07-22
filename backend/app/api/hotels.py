@@ -6,6 +6,10 @@ from app.enums.user_role import UserRole
 from app.models.user import User
 from app.schemas.review import ReviewResponse
 from app.services.review import list_hotel_reviews_service
+from fastapi import File, Form, UploadFile
+from app.utils.file_upload import save_image
+
+
 from app.schemas.hotel import (
     HotelCreate,
     HotelUpdate,
@@ -25,18 +29,36 @@ router = APIRouter(
 )
 
 
-@router.post("",response_model=HotelResponse,status_code=201,)
+@router.post(
+    "",
+    response_model=HotelResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 def create_hotel(
-    hotel_data: HotelCreate,
+    name: str = Form(...),
+    description: str = Form(...),
+    address: str = Form(...),
+    city: str = Form(...),
+    district: str = Form(...),
+    destination_id: int = Form(...),
+    image: UploadFile = File(...),
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles(UserRole.HOTEL_OWNER)
-    ),
+    current_user=Depends(require_roles(UserRole.HOTEL_OWNER)),
 ):
+    hotel_data = HotelCreate(
+        name=name,
+        description=description,
+        address=address,
+        city=city,
+        district=district,
+        destination_id=destination_id,
+    )
+
     return create_hotel_service(
-        db,
-        hotel_data,
-        current_user,
+        db=db,
+        hotel_data=hotel_data,
+        image=image,
+        current_user=current_user,
     )
 
 
