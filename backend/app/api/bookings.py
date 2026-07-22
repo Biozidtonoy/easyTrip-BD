@@ -8,6 +8,7 @@ from app.schemas.booking import (
     BookingCreate,
     BookingResponse,
     BookingUpdate,
+    BookingListResponse,
 )
 from app.services.booking import (
     create_booking_service,
@@ -40,7 +41,7 @@ def create_booking(
 
 @router.get(
     "",
-    response_model=list[BookingResponse],
+    response_model=list[BookingListResponse],
 )
 def list_bookings(
     db: Session = Depends(get_db),
@@ -53,7 +54,7 @@ def list_bookings(
 
 @router.get(
     "/{booking_id}",
-    response_model=BookingResponse,
+    response_model=BookingListResponse,
 )
 def get_booking(
     booking_id: int,

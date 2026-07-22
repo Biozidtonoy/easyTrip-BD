@@ -11,6 +11,10 @@ import DestinationDetailsPage from "./pages/DestinationDetailsPage";
 import RoleProtectedRoute from "./routes/RoleProtectedRoute";
 import MainLayout from "./components/layout/MainLayout";
 import HotelsPage from "./pages/HotelsPage";
+import BookingPage from "./pages/BookingPage";
+
+
+
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
   {
@@ -52,6 +56,10 @@ const routes = [
           {
             path: "/my-bookings",
             element: <MyBookingsPage />,
+          },
+          {
+            path: "/bookings/new/:roomId",
+            element: <BookingPage />,
           },
         ],
       },
