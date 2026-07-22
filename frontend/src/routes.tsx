@@ -2,7 +2,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DestinationPage from "./pages/DestinationPage";
-
+import HotelDetailsPage from "./pages/HotelDetailsPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyBookingsPage from "./pages/MyBookingsPage";
 import OwnerDashboardPage from "./pages/OwnerDashboardPage";
@@ -10,7 +10,7 @@ import AdminDashboardPage from "./pages/AdminDashboardPage";
 import DestinationDetailsPage from "./pages/DestinationDetailsPage";
 import RoleProtectedRoute from "./routes/RoleProtectedRoute";
 import MainLayout from "./components/layout/MainLayout";
-
+import HotelsPage from "./pages/HotelsPage";
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
   {
@@ -28,9 +28,19 @@ const routes = [
       },
 
       {
+        path: "/hotels",
+        element: <HotelsPage />,
+      },
+
+      {
         path: "/destinations/:id",
         element: <DestinationDetailsPage />,
       },
+      {
+        path: "/hotels/:id",
+        element: <HotelDetailsPage />,
+      },
+
       // ---------- Traveler Routes ----------
       {
         element: <RoleProtectedRoute allowedRoles={["traveler"]} />,

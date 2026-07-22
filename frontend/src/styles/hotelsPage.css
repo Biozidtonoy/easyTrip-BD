@@ -1,0 +1,48 @@
+.hotels-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+.hotels-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hotels-header h1 {
+    font-size: 2.7rem;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.hotels-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #6b7280;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.empty-message,
+.page-error {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #6b7280;
+    padding: 3rem 0;
+}
+
+@media (max-width: 768px) {
+    .hotels-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hotels-page {
+        padding: 2rem 1rem;
+    }
+
+    .hotels-header h1 {
+        font-size: 1.8rem;
+    }
+}

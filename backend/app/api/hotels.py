@@ -62,11 +62,18 @@ def create_hotel(
     )
 
 
-@router.get("",response_model=list[HotelResponse],)
+@router.get(
+    "",
+    response_model=list[HotelResponse],
+)
 def get_hotels(
+    destination_id: int | None = None,
     db: Session = Depends(get_db),
 ):
-    return list_hotels_service(db)
+    return list_hotels_service(
+        db,
+        destination_id,
+    )
 
 
 @router.get("/{hotel_id}",response_model=HotelResponse,)
@@ -80,20 +87,52 @@ def get_hotel(
     )
 
 
-@router.patch("/{hotel_id}",response_model=HotelResponse,)
+@router.patch(
+    "/{hotel_id}",
+    response_model=HotelResponse,
+)
 def update_hotel(
     hotel_id: int,
-    hotel_data: HotelUpdate,
+    name: str | None = Form(None),
+    description: str | None = Form(None),
+    address: str | None = Form(None),
+    city: str | None = Form(None),
+    district: str | None = Form(None),
+    destination_id: int | None = Form(None),
+    image: UploadFile | None = File(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(
         require_roles(UserRole.HOTEL_OWNER)
     ),
 ):
+    update_data = {}
+
+    if name is not None:
+        update_data["name"] = name
+
+    if description is not None:
+        update_data["description"] = description
+
+    if address is not None:
+        update_data["address"] = address
+
+    if city is not None:
+        update_data["city"] = city
+
+    if district is not None:
+        update_data["district"] = district
+
+    if destination_id is not None:
+        update_data["destination_id"] = destination_id
+
+    hotel_data = HotelUpdate(**update_data)
+
     return update_hotel_service(
-        db,
-        hotel_id,
-        hotel_data,
-        current_user,
+        db=db,
+        hotel_id=hotel_id,
+        hotel_data=hotel_data,
+        current_user=current_user,
+        image=image,
     )
 
 
