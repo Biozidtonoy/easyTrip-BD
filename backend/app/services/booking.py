@@ -10,6 +10,7 @@ from app.crud.booking import (
     get_booking_by_id,
     get_bookings,
     get_bookings_by_room,
+    get_bookings_by_traveler,
     update_booking,
 )
 

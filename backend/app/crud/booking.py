@@ -1,7 +1,9 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+from sqlalchemy.orm import joinedload
 
 from app.models.booking import Booking
+from app.models.room import Room
 from app.schemas.booking import BookingCreate, BookingUpdate
 
 def create_booking(
@@ -51,6 +53,10 @@ def get_bookings(
     return list(
         db.scalars(
             select(Booking)
+            .options(
+                joinedload(Booking.room)
+                .joinedload(Room.hotel)
+            )
         ).all()
     )
 
@@ -60,7 +66,12 @@ def get_bookings_by_traveler(
 ) -> list[Booking]:
     return list(
         db.scalars(
-            select(Booking).where(
+            select(Booking)
+            .options(
+                joinedload(Booking.room)
+                .joinedload(Room.hotel)
+            )
+            .where(
                 Booking.traveler_id == traveler_id
             )
         ).all()

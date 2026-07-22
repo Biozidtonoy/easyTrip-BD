@@ -1,0 +1,134 @@
+.booking-card-item {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    padding: 1.75rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.booking-card-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.booking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.booking-reference {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    word-break: break-word;
+}
+
+.status {
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status.confirmed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.booking-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.booking-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.booking-detail:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.booking-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.booking-icon {
+    color: #2563eb;
+    font-size: 1rem;
+    min-width: 18px;
+}
+
+.booking-value {
+    font-weight: 600;
+    color: #111827;
+    text-align: right;
+}
+
+.payment-status {
+    color: #92400e;
+}
+
+.booking-card-actions {
+    margin-top: 1.75rem;
+}
+
+.cancel-booking-btn {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.cancel-booking-btn:hover {
+    background: #b91c1c;
+}
+
+@media (max-width: 640px) {
+
+    .booking-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .booking-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .booking-value {
+        text-align: left;
+    }
+
+}
