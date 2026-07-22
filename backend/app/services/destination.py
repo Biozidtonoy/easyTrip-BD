@@ -75,7 +75,9 @@ def update_destination_service(
     db: Session,
     destination_id: int,
     destination_data: DestinationUpdate,
+    image: UploadFile | None = None,
 ) -> Destination:
+
     destination = get_destination_by_id(
         db,
         destination_id,
@@ -87,10 +89,19 @@ def update_destination_service(
             detail="Destination not found.",
         )
 
+    image_filename = None
+
+    if image is not None:
+        image_filename = save_image(
+            image,
+            "destination_images",
+        )
+
     return update_destination(
         db=db,
         destination=destination,
         destination_data=destination_data,
+        image=image_filename,
     )
 
 
