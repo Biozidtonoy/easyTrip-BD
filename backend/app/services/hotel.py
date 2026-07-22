@@ -61,8 +61,12 @@ from app.crud.hotel import get_hotels
 
 def list_hotels_service(
     db: Session,
+    destination_id: int | None = None,
 ):
-    return get_hotels(db)
+    return get_hotels(
+        db,
+        destination_id,
+    )
 
 
 def update_hotel_service(
@@ -70,6 +74,7 @@ def update_hotel_service(
     hotel_id: int,
     hotel_data: HotelUpdate,
     current_user: User,
+    image: UploadFile | None = None,
 ):
     hotel = get_hotel_by_id(db, hotel_id)
 
@@ -96,10 +101,20 @@ def update_hotel_service(
                 status_code=404,
                 detail="Destination not found.",
             )
+
+    image_filename = None
+
+    if image is not None:
+        image_filename = save_image(
+            image,
+            "hotel_images",
+        )
+
     return update_hotel(
-        db,
-        hotel,
-        hotel_data,
+        db=db,
+        hotel=hotel,
+        hotel_data=hotel_data,
+        image=image_filename,
     )
 
 

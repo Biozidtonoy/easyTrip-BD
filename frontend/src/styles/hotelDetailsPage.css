@@ -1,0 +1,90 @@
+.hotel-details-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+.hotel-details-image {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 18px;
+    margin-bottom: 2rem;
+}
+
+.hotel-details-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hotel-details-content h1 {
+    font-size: 2.7rem;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.hotel-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.hotel-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.hotel-info-box {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all .25s ease;
+}
+
+.hotel-info-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.hotel-info-box h4 {
+    margin-bottom: .75rem;
+    color: #0f766e;
+    font-size: 1.05rem;
+}
+
+.hotel-info-box p {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+@media (max-width:768px) {
+
+    .hotel-details-image {
+        height: 320px;
+    }
+
+    .hotel-details-content h1 {
+        font-size: 2rem;
+    }
+
+}
+
+@media (max-width:576px) {
+
+    .hotel-details-page {
+        padding: 2rem 1rem;
+    }
+
+    .hotel-details-image {
+        height: 230px;
+    }
+
+    .hotel-details-content h1 {
+        font-size: 1.7rem;
+    }
+
+}

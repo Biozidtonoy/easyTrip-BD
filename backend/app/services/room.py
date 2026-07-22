@@ -70,8 +70,12 @@ def get_room_service(
 
 def list_rooms_service(
     db: Session,
+    hotel_id: int | None = None,
 ):
-    return get_rooms(db)
+    return get_rooms(
+        db,
+        hotel_id,
+    )
 
 def update_room_service(
     db: Session,

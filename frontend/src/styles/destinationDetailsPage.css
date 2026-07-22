@@ -1,3 +1,39 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 2rem;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.back-button:hover {
+    background-color: #f3f4f6;
+    border-color: #0f766e;
+    color: #0f766e;
+    transform: translateX(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.back-button:active {
+    transform: translateX(-1px);
+}
+
+.back-button svg {
+    font-size: 1.1rem;
+}
 .destination-details-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -33,7 +69,7 @@
 
 .details-info {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 }
 
@@ -61,30 +97,78 @@
     color: #dc2626;
 }
 
-@media (max-width:768px){
+.details-empty {
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.05rem;
+    padding: 2rem 0;
+}
 
-    .details-image{
-        height:300px;
+/* ==========================
+   Hotels Section
+========================== */
+
+.destination-hotels {
+    margin-top: 4rem;
+}
+
+.destination-hotels h2 {
+    font-size: 2rem;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: .75rem;
+}
+
+.destination-hotels h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 70px;
+    height: 4px;
+
+    background: #0f766e;
+    border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+
+    .details-image {
+        height: 300px;
     }
 
-    .details-content h1{
-        font-size:2rem;
+    .details-content h1 {
+        font-size: 2rem;
     }
 
-    .details-info{
-        grid-template-columns:1fr;
+    .details-info {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-hotels {
+        margin-top: 3rem;
+    }
+
+    .destination-hotels h2 {
+        font-size: 1.75rem;
     }
 
 }
 
-@media (max-width:576px){
+@media (max-width: 576px) {
 
-    .destination-details-page{
-        padding:2rem 1rem;
+    .destination-details-page {
+        padding: 2rem 1rem;
     }
 
-    .details-image{
-        height:220px;
+    .details-image {
+        height: 220px;
+    }
+
+    .destination-hotels h2 {
+        font-size: 1.5rem;
     }
 
 }

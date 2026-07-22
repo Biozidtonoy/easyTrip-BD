@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session, selectinload
-
+from sqlalchemy import select
 from app.models.room import Room
 from app.schemas.room import RoomCreate
 from app.schemas.room import RoomUpdate
@@ -33,11 +33,17 @@ def get_room_by_id(
 
 def get_rooms(
     db: Session,
+    hotel_id: int | None = None,
 ) -> list[Room]:
-    return (
-        db.query(Room)
-        .options(selectinload(Room.images))
-        .all()
+    query = select(Room)
+
+    if hotel_id is not None:
+        query = query.where(
+            Room.hotel_id == hotel_id
+        )
+
+    return list(
+        db.scalars(query).all()
     )
 
 

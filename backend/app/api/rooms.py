@@ -47,9 +47,13 @@ def create_room(
     response_model=list[RoomResponse],
 )
 def get_rooms(
+    hotel_id: int | None = None,
     db: Session = Depends(get_db),
 ):
-    return list_rooms_service(db)
+    return list_rooms_service(
+        db,
+        hotel_id,
+    )
 
 @router.get(
     "/{room_id}",
