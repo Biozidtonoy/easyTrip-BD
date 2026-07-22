@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi.staticfiles import StaticFiles
+
 # from contextlib import asynccontextmanager
 # from sqlalchemy import text
 
@@ -12,7 +14,9 @@ from app.api.destinations import router as destination_router
 from app.api.rooms import router as room_router
 from app.api.bookings import router as booking_router
 from app.api.reviews import router as review_router
+
 from app.api.room_images import router as room_image_router
+
 
 
 app = FastAPI()
@@ -27,11 +31,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.mount(
     "/uploads",
     StaticFiles(directory="uploads"),
     name="uploads",
 )
+
 
 app.include_router(auth_router)
 app.include_router(users_router)

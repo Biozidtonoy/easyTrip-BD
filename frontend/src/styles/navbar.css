@@ -152,6 +152,12 @@
   font-weight: 600;
   color: #374151;
 }
+.mobile-user-name{
+    display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: 600;
+}
 
 .logout-btn {
   background: #dc2626;
@@ -166,6 +172,20 @@
 
 .logout-btn:hover {
   background: #b91c1c;
+}
+
+
+.user-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: capitalize;
 }
 
 @media (max-width: 1024px) {

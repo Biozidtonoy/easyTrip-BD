@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import "../../styles/navbar.css";
 import { useAuth } from "../../hooks/useAuth";
+import { getNavigationLinks } from "../../utils/navigation";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { user, isAuthenticated, logout } = useAuth();
+
+  const navLinks = getNavigationLinks(
+    isAuthenticated,
+    user?.role
+  );
+
+  // console.log("User:", user);
+  // console.log("Role:", user?.role);
+  // console.log("Nav Links:", navLinks);
 
   const handleLogout = () => {
     logout();
@@ -28,11 +38,11 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/destinations">Destinations</Link>
-          <Link to="/hotels">Hotels</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact</Link>
+          {navLinks.map((link) => (
+            <Link key={link.path} to={link.path}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Desktop Actions */}
@@ -54,7 +64,10 @@ const Navbar = () => {
           ) : (
             <>
               <span className="user-name">
-                Hi, {user?.name}
+                {user?.name}
+                <small className="user-role">
+                  {user?.role.replace("_", " ")}
+                </small>
               </span>
 
               <button
@@ -78,37 +91,15 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
-        <Link to="/" onClick={() => setMenuOpen(false)}>
-          Home
-        </Link>
-
-        <Link
-          to="/destinations"
-          onClick={() => setMenuOpen(false)}
-        >
-          Destinations
-        </Link>
-
-        <Link
-          to="/hotels"
-          onClick={() => setMenuOpen(false)}
-        >
-          Hotels
-        </Link>
-
-        <Link
-          to="/about"
-          onClick={() => setMenuOpen(false)}
-        >
-          About Us
-        </Link>
-
-        <Link
-          to="/contact"
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </Link>
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
+        ))}
 
         <Link
           to="/partner"
@@ -139,7 +130,10 @@ const Navbar = () => {
         ) : (
           <>
             <div className="mobile-user-name">
-              Hi, {user?.name}
+              {user?.name}
+              <small className="user-role">
+                {user?.role.replace("_", " ")}
+              </small>
             </div>
 
             <button
