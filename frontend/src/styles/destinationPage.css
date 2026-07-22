@@ -1,0 +1,32 @@
+.destination-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.destination-header {
+  margin-bottom: 48px;
+}
+
+.destination-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.destination-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.destination-content {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.destination-pagination {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+}
