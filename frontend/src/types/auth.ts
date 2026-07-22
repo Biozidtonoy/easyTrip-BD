@@ -1,3 +1,8 @@
+export type UserRole =
+  | "traveler"
+  | "hotel_owner"
+  | "admin";
+
 export interface RegisterFormData {
   name: string;
   email: string;
@@ -5,9 +10,9 @@ export interface RegisterFormData {
 }
 
 export interface RegisterResponse {
-    id: number;
-    name: string;
-    email: string;
+  id: number;
+  name: string;
+  email: string;
 }
 
 export interface LoginFormData {
@@ -24,7 +29,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  role: string;
+  role: UserRole;
   is_active: boolean;
   created_at: string;
   updated_at: string;

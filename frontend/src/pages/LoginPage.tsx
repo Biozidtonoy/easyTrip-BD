@@ -7,7 +7,7 @@ import PasswordInput from "../components/auth/PasswordInput";
 import SubmitButton from "../components/auth/SubmitButton";
 import { validateLoginForm } from "../utils/validators";
 import { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { saveToken } from "../utils/storage";
 import { useAuth } from "../hooks/useAuth";
@@ -19,11 +19,13 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { login } = useAuth();
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -66,8 +68,12 @@ const LoginPage = () => {
       setSuccessMessage("Login successful!");
 
       setTimeout(() => {
-        navigate("/");
+        navigate(from, {
+          replace: true,
+        });
       }, 1200);
+
+
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setErrorMessage(
