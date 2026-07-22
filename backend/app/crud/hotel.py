@@ -4,10 +4,16 @@ from app.models.hotel import Hotel
 from app.schemas.hotel import HotelCreate, HotelUpdate
 
 
-def create_hotel(db: Session,hotel_data: HotelCreate,owner_id: int,) -> Hotel:
+def create_hotel(
+    db: Session,
+    hotel_data: HotelCreate,
+    owner_id: int,
+    image: str,
+) -> Hotel:
     hotel = Hotel(
         **hotel_data.model_dump(),
         owner_id=owner_id,
+        image=image,
     )
 
     db.add(hotel)

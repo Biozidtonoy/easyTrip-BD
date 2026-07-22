@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy.orm import Session
-
+from fastapi import File, Form, UploadFile
+from app.utils.file_upload import save_image
 from app.db.database import get_db
 from app.core.security import require_roles
 from app.enums.user_role import UserRole
@@ -29,13 +30,21 @@ router = APIRouter(
     status_code=status.HTTP_201_CREATED,
 )
 def create_destination(
-    destination_data: DestinationCreate,
+    name: str = Form(...),
+    description: str = Form(...),
+    division: str = Form(...),
+    district: str = Form(...),
+    image: UploadFile = File(...),
     db: Session = Depends(get_db),
     current_user=Depends(require_roles(UserRole.ADMIN)),
 ):
     return create_destination_service(
         db=db,
-        destination_data=destination_data,
+        name=name,
+        description=description,
+        division=division,
+        district=district,
+        image=image,
     )
 
 

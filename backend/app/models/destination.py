@@ -28,6 +28,10 @@ class Destination(BaseModel):
         String(100),
         nullable=False,
     )
+    image: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
 
     hotels: Mapped[list["Hotel"]] = relationship(
         back_populates="destination",

@@ -2,6 +2,8 @@ from decimal import Decimal
 from pydantic import BaseModel
 from app.enums.room_type import RoomType
 from datetime import datetime
+from app.schemas.room_image import RoomImageResponse
+
 
 class RoomCreate(BaseModel):
     hotel_id: int
@@ -24,6 +26,7 @@ class RoomResponse(BaseModel):
     room_type: RoomType
     price_per_night: Decimal
     capacity: int
+    images: list[RoomImageResponse] = []
     is_available: bool
     created_at: datetime
     updated_at: datetime

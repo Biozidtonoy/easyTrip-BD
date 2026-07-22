@@ -1,5 +1,8 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
+from fastapi import HTTPException, UploadFile, status
+
+from app.utils.file_upload import save_image
 
 from app.crud.destination import (
     create_destination,
@@ -18,11 +21,29 @@ from app.schemas.destination import (
 
 def create_destination_service(
     db: Session,
-    destination_data: DestinationCreate,
+    name: str,
+    description: str,
+    division: str,
+    district: str,
+    image: UploadFile,
 ) -> Destination:
+
+    image_filename = save_image(
+        image,
+        "destination_images",
+    )
+
+    destination_data = DestinationCreate(
+        name=name,
+        description=description,
+        division=division,
+        district=district,
+    )
+
     return create_destination(
         db=db,
         destination_data=destination_data,
+        image=image_filename,
     )
 
 
