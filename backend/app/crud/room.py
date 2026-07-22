@@ -1,8 +1,8 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.models.room import Room
 from app.schemas.room import RoomCreate
-
+from app.schemas.room import RoomUpdate
 
 def create_room(
     db: Session,
@@ -23,16 +23,25 @@ def get_room_by_id(
     db: Session,
     room_id: int,
 ) -> Room | None:
-    return db.query(Room).filter(Room.id == room_id).first()
+    return (
+        db.query(Room)
+        .options(selectinload(Room.images))
+        .filter(Room.id == room_id)
+        .first()
+    )
 
 
 def get_rooms(
     db: Session,
 ) -> list[Room]:
-    return db.query(Room).all()
+    return (
+        db.query(Room)
+        .options(selectinload(Room.images))
+        .all()
+    )
 
 
-from app.schemas.room import RoomUpdate
+
 
 
 def update_room(

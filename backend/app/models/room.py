@@ -21,6 +21,8 @@ if TYPE_CHECKING:
 if TYPE_CHECKING:
     from app.models.booking import Booking
 
+if TYPE_CHECKING:
+    from app.models.room_image import RoomImage
 
 class Room(BaseModel):
     __tablename__ = "rooms"
@@ -70,6 +72,11 @@ class Room(BaseModel):
     )
 
     bookings: Mapped[list["Booking"]] = relationship(
+        back_populates="room",
+        cascade="all, delete-orphan",
+    )
+
+    images: Mapped[list["RoomImage"]] = relationship(
         back_populates="room",
         cascade="all, delete-orphan",
     )

@@ -11,9 +11,12 @@ from app.schemas.destination import (
 def create_destination(
     db: Session,
     destination_data: DestinationCreate,
+    image: str,
 ) -> Destination:
+
     destination = Destination(
-        **destination_data.model_dump()
+        **destination_data.model_dump(),
+        image=image,
     )
 
     db.add(destination)
