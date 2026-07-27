@@ -7,6 +7,7 @@ from app.models.room import Room
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from app.models.destination import Destination
     from app.models.room import Room
     from app.models.review import Review
 
@@ -40,7 +41,7 @@ class Hotel(BaseModel):
     )
 
     image: Mapped[str] = mapped_column(
-        String(255),
+        Text,
         nullable=False,
     )
 

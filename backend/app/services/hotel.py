@@ -30,7 +30,7 @@ def create_hotel_service(
         status_code=404,
         detail="Destination not found.",
     )
-    image_filename = save_image(
+    image_url = save_image(
         image,
         "hotel_images",
     )
@@ -38,7 +38,7 @@ def create_hotel_service(
         db=db,
         hotel_data=hotel_data,
         owner_id=current_user.id,
-        image=image_filename,
+        image=image_url,
     )
 
 
@@ -102,10 +102,10 @@ def update_hotel_service(
                 detail="Destination not found.",
             )
 
-    image_filename = None
+    image_url = None
 
     if image is not None:
-        image_filename = save_image(
+        image_url = save_image(
             image,
             "hotel_images",
         )
@@ -114,7 +114,7 @@ def update_hotel_service(
         db=db,
         hotel=hotel,
         hotel_data=hotel_data,
-        image=image_filename,
+        image=image_url,
     )
 
 
