@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
-
+from app.core.config import settings
 # from contextlib import asynccontextmanager
 # from sqlalchemy import text
 
@@ -25,6 +25,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:4173",
+         settings.FRONTEND_URL,
     ],
     allow_credentials=True,
     allow_methods=["*"],
