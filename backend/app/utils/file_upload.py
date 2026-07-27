@@ -1,38 +1,47 @@
-from pathlib import Path
-from uuid import uuid4
-
-import shutil
-
+import cloudinary
+from cloudinary.uploader import upload
 from fastapi import HTTPException, UploadFile, status
 
-ALLOWED_EXTENSIONS = {
-    ".jpg",
-    ".jpeg",
-    ".png",
-    ".webp",
+from app.core.config import settings
+
+
+cloudinary.config(
+    cloud_name=settings.CLOUDINARY_CLOUD_NAME,
+    api_key=settings.CLOUDINARY_API_KEY,
+    api_secret=settings.CLOUDINARY_API_SECRET,
+    secure=True,
+)
+
+
+ALLOWED_IMAGE_TYPES = {
+    "image/jpeg",
+    "image/png",
+    "image/webp",
 }
 
 
 def save_image(
-    file: UploadFile,
+    image: UploadFile,
     folder: str,
 ) -> str:
-    extension = Path(file.filename).suffix.lower()
 
-    if extension not in ALLOWED_EXTENSIONS:
+    if image.content_type not in ALLOWED_IMAGE_TYPES:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Unsupported image format.",
+            detail="Only JPEG, PNG, and WebP images are allowed.",
         )
 
-    filename = f"{uuid4()}{extension}"
+    try:
+        result = upload(
+            image.file,
+            folder=f"easytrip/{folder}",
+            resource_type="image",
+        )
 
-    upload_dir = Path("uploads") / folder
-    upload_dir.mkdir(parents=True, exist_ok=True)
+        return result["secure_url"]
 
-    file_path = upload_dir / filename
-
-    with file_path.open("wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    return filename
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to upload image.",
+        )

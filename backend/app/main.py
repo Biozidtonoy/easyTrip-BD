@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from fastapi.staticfiles import StaticFiles
+from mangum import Mangum
 
 # from contextlib import asynccontextmanager
 # from sqlalchemy import text
@@ -25,17 +24,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "http://localhost:4173",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
-
-
-app.mount(
-    "/uploads",
-    StaticFiles(directory="uploads"),
-    name="uploads",
 )
 
 
@@ -51,3 +44,5 @@ app.include_router(room_image_router)
 @app.get("/")
 def root():
     return {"message": "welcome to easytrip-bd backend service"}
+
+handler = Mangum(app)

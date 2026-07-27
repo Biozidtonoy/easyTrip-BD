@@ -25,3 +25,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# User-uploaded files
+uploads/
+
+lambda_package/
+*.zip
+easytrip-backend.zip

@@ -19,7 +19,7 @@ def upload_room_image_service(
             detail="Room not found.",
         )
 
-    image_filename = save_image(
+    image_url = save_image(
         image,
         "room_images",
     )
@@ -27,5 +27,5 @@ def upload_room_image_service(
     return create_room_image(
         db=db,
         room_id=room_id,
-        image=image_filename,
+        image=image_url,
     )

@@ -28,7 +28,7 @@ def create_destination_service(
     image: UploadFile,
 ) -> Destination:
 
-    image_filename = save_image(
+    image_url = save_image(
         image,
         "destination_images",
     )
@@ -43,7 +43,7 @@ def create_destination_service(
     return create_destination(
         db=db,
         destination_data=destination_data,
-        image=image_filename,
+        image=image_url,
     )
 
 
@@ -89,10 +89,10 @@ def update_destination_service(
             detail="Destination not found.",
         )
 
-    image_filename = None
+    image_url = None
 
     if image is not None:
-        image_filename = save_image(
+        image_url = save_image(
             image,
             "destination_images",
         )
@@ -101,7 +101,7 @@ def update_destination_service(
         db=db,
         destination=destination,
         destination_data=destination_data,
-        image=image_filename,
+        image=image_url,
     )
 
 

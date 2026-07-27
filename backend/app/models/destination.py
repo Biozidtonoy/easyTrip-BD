@@ -1,9 +1,11 @@
 from sqlalchemy import String, Text
+from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
-
+if TYPE_CHECKING:
+    from app.models.hotel import Hotel
 
 class Destination(BaseModel):
     __tablename__ = "destinations"
@@ -29,7 +31,7 @@ class Destination(BaseModel):
         nullable=False,
     )
     image: Mapped[str] = mapped_column(
-        String(255),
+        Text,
         nullable=False,
     )
 
