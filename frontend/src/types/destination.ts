@@ -5,7 +5,6 @@ export interface Destination {
   division: string;
   district: string;
   image: string;
-  image_url: string;
   created_at: string;
   updated_at: string;
 }

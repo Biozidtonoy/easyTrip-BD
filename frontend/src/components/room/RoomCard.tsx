@@ -11,7 +11,7 @@ interface RoomCardProps {
 const RoomCard = ({ room }: RoomCardProps) => {
   const image =
     room.images.length > 0
-      ? room.images[0].image_url
+      ? room.images[0].image
       : "https://placehold.co/600x400?text=No+Image";
 
   return (

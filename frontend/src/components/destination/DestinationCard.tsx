@@ -19,7 +19,7 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
       <article className="destination-card">
         <div className="destination-image">
           <img
-            src={destination.image_url}
+            src={destination.image}
             alt={destination.name}
           />
         </div>

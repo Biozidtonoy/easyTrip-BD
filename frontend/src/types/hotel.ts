@@ -6,7 +6,6 @@ export interface Hotel {
   city: string;
   district: string;
   image: string;
-  image_url: string;
   owner_id: number;
   destination_id: number;
   created_at: string;
