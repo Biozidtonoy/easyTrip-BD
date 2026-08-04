@@ -79,7 +79,7 @@ const DestinationDetailsPage = () => {
         <span>Back </span>
       </button>
       <div className="details-image">
-        <img src={destination.image_url} alt={destination.name} />
+        <img src={destination.image} alt={destination.name} />
       </div>
 
       <section className="details-content">

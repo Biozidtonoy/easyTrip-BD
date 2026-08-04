@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from decimal import Decimal
-
+from app.schemas.room_image import RoomImageResponse
 from pydantic import ConfigDict, BaseModel
 # from app.models.base import BaseModel
 from app.enums.booking_status import BookingStatus
@@ -50,9 +50,14 @@ class RoomSummary(BaseModel):
     room_number: str
     room_type: RoomType
     hotel: HotelSummary
-
+    images: list[RoomImageResponse]
     model_config = ConfigDict(from_attributes=True)
 
+class RoomImageSummary(BaseModel):
+    id: int
+    image: str
+
+    model_config = ConfigDict(from_attributes=True)
 
 class BookingListResponse(BaseModel):
     id: int

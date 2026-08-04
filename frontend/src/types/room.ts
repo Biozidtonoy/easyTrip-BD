@@ -1,6 +1,6 @@
 export interface RoomImage {
   id: number;
-  image_url: string;
+  image: string;
 }
 
 export interface Room {

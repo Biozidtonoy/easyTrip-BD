@@ -34,7 +34,17 @@ def get_booking_by_id(
     booking_id: int,
 ) -> Booking | None:
     return db.scalar(
-        select(Booking).where(Booking.id == booking_id)
+        select(Booking)
+        .options(
+            joinedload(Booking.room)
+                .joinedload(Room.hotel),
+
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+        .where(
+            Booking.id == booking_id
+        )
     )
 
 def get_booking_by_reference(
@@ -55,7 +65,9 @@ def get_bookings(
             select(Booking)
             .options(
                 joinedload(Booking.room)
-                .joinedload(Room.hotel)
+                    .joinedload(Room.hotel),
+                joinedload(Booking.room)
+                    .joinedload(Room.images),
             )
         ).all()
     )
@@ -69,7 +81,9 @@ def get_bookings_by_traveler(
             select(Booking)
             .options(
                 joinedload(Booking.room)
-                .joinedload(Room.hotel)
+                    .joinedload(Room.hotel),
+                joinedload(Booking.room)
+                    .joinedload(Room.images),
             )
             .where(
                 Booking.traveler_id == traveler_id

@@ -20,7 +20,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
 
       <div className="hotel-card-image">
         <img
-          src={hotel.image_url}
+          src={hotel.image}
           alt={hotel.name}
         />
       </div>

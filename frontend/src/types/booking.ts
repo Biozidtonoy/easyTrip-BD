@@ -17,6 +17,10 @@ export interface Booking {
       id: number;
       name: string;
     };
+    images: {
+    id: number;
+    image: string;
+  }[];
   };
   check_in_date: string;
   check_out_date: string;

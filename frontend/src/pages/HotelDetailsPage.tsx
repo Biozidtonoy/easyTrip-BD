@@ -86,7 +86,7 @@ const HotelDetailsPage = () => {
         <span>Back </span>
       </button>
       <div className="hotel-details-image">
-        <img src={hotel.image_url} alt={hotel.name} />
+        <img src={hotel.image} alt={hotel.name} />
       </div>
 
       <section className="hotel-details-content">
