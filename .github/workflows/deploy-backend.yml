@@ -41,5 +41,4 @@ jobs:
         run: |
           cd backend
           cp -r app lambda_package/
-          cp .env lambda_package/
           cp alembic.ini lambda_package/
