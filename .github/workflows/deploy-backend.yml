@@ -59,11 +59,16 @@ jobs:
           cp -r app lambda_package/
           cp alembic.ini lambda_package/
 
-
       - name: Test Lambda Handler
         run: |
           docker run --rm \
             --entrypoint /bin/bash \
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            -e CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
+            -e CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
+            -e CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
+            -e FRONTEND_URL="${{ secrets.FRONTEND_URL }}" \
             -v "${{ github.workspace }}/backend/lambda_package:/var/task" \
             -w /var/task \
             public.ecr.aws/lambda/python:3.11 \
@@ -90,7 +95,6 @@ jobs:
       - name: Verify AWS CLI
         run: aws --version
 
-
       - name: Deploy to AWS Lambda
         run: |
           aws lambda update-function-code \
@@ -101,6 +105,3 @@ jobs:
         run: |
           aws lambda get-function-configuration \
             --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }}
-
-
-
