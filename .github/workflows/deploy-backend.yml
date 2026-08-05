@@ -1,3 +1,6 @@
+permissions:
+  contents: read
+
 name: Deploy Backend to AWS Lambda
 
 on:
@@ -5,10 +8,16 @@ on:
     branches:
       - main
       - tonoy/#70-implement-ci-cd-pipeline
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    environment:
+      name: production
 
     steps:
       - name: Checkout Repository
@@ -18,9 +27,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
 
       - name: Verify Python Version
         run: python --version
+
+      - name: Validate Python Syntax
+        run: |
+          cd backend
+          python -m compileall app
 
       - name: Prepare Lambda Package
         run: |
@@ -43,10 +59,26 @@ jobs:
           cp -r app lambda_package/
           cp alembic.ini lambda_package/
 
+
+      - name: Test Lambda Handler
+        run: |
+          docker run --rm \
+            --entrypoint /bin/bash \
+            -v "${{ github.workspace }}/backend/lambda_package:/var/task" \
+            -w /var/task \
+            public.ecr.aws/lambda/python:3.11 \
+            -c "python -c 'from app.main import handler; print(\"Lambda handler OK\")'"
+
       - name: Create Deployment ZIP
         run: |
           cd backend/lambda_package
           zip -r ../easytrip-backend.zip .
+
+      - name: Upload Deployment Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: easytrip-backend
+          path: backend/easytrip-backend.zip
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -58,6 +90,7 @@ jobs:
       - name: Verify AWS CLI
         run: aws --version
 
+
       - name: Deploy to AWS Lambda
         run: |
           aws lambda update-function-code \
@@ -66,5 +99,8 @@ jobs:
 
       - name: Verify Deployment
         run: |
-          aws lambda get-function \
+          aws lambda get-function-configuration \
             --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }}
+
+
+
