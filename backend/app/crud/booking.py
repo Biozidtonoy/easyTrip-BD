@@ -33,6 +33,9 @@ def get_booking_by_id(
     db: Session,
     booking_id: int,
 ) -> Booking | None:
+
+    statement = (
+
     return db.scalar(
         select(Booking)
         .options(
@@ -42,10 +45,19 @@ def get_booking_by_id(
             joinedload(Booking.room)
                 .joinedload(Room.images),
         )
+        .where(Booking.id == booking_id)
+
+
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
         .where(
             Booking.id == booking_id
         )
+
     )
+
+    return db.execute(statement).unique().scalar_one_or_none()
 
 def get_booking_by_reference(
     db: Session,
@@ -60,7 +72,23 @@ def get_booking_by_reference(
 def get_bookings(
     db: Session,
 ) -> list[Booking]:
+    statement = (
+        select(Booking)
+        .options(
+            joinedload(Booking.room)
+                .joinedload(Room.hotel),
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+    )
+
     return list(
+
+        db.execute(statement)
+        .unique()
+        .scalars()
+        .all()
+
         db.scalars(
             select(Booking)
             .options(
@@ -70,13 +98,33 @@ def get_bookings(
                     .joinedload(Room.images),
             )
         ).all()
+
     )
 
 def get_bookings_by_traveler(
     db: Session,
     traveler_id: int,
 ) -> list[Booking]:
+    statement = (
+        select(Booking)
+        .options(
+            joinedload(Booking.room)
+                .joinedload(Room.hotel),
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+        .where(
+            Booking.traveler_id == traveler_id
+        )
+    )
+
     return list(
+
+        db.execute(statement)
+        .unique()
+        .scalars()
+        .all()
+
         db.scalars(
             select(Booking)
             .options(
@@ -89,6 +137,7 @@ def get_bookings_by_traveler(
                 Booking.traveler_id == traveler_id
             )
         ).all()
+
     )
 
 def get_bookings_by_room(
