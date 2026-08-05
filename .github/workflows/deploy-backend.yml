@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - tonoy/#70-implement-ci-cd-pipeline
     paths:
       - "backend/**"
       - ".github/workflows/deploy-backend.yml"
