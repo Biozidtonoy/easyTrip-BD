@@ -44,6 +44,9 @@ app.include_router(room_image_router)
 
 @app.get("/")
 def root():
-    return {"message": "welcome to easytrip-bd backend service"}
+    return {
+        "message": "Welcome to EasyTrip BD Backend Service",
+        "version": "CI/CD Test"
+    }
 
 handler = Mangum(app)
