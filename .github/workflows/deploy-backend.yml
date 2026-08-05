@@ -1,0 +1,89 @@
+permissions:
+  contents: read
+
+name: Deploy Backend to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify Python Version
+        run: python --version
+
+      - name: Validate Python Syntax
+        run: |
+          cd backend
+          python -m compileall app
+
+      - name: Prepare Lambda Package
+        run: |
+          cd backend
+          rm -rf lambda_package
+          mkdir lambda_package
+
+      - name: Build Lambda Dependencies
+        run: |
+          cd backend
+          docker run --rm \
+            --entrypoint /bin/bash \
+            -v "${{ github.workspace }}/backend:/var/task" \
+            public.ecr.aws/lambda/python:3.11 \
+            -c "pip install -r /var/task/requirements.txt -t /var/task/lambda_package"
+
+      - name: Copy Backend Files
+        run: |
+          cd backend
+          cp -r app lambda_package/
+          cp alembic.ini lambda_package/
+
+      - name: Create Deployment ZIP
+        run: |
+          cd backend/lambda_package
+          zip -r ../easytrip-backend.zip .
+
+      - name: Upload Deployment Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: easytrip-backend
+          path: backend/easytrip-backend.zip
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Verify AWS CLI
+        run: aws --version
+
+      - name: Deploy to AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
+            --zip-file fileb://backend/easytrip-backend.zip
+
+      - name: Verify Deployment
+        run: |
+          aws lambda get-function-configuration \
+            --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }}
