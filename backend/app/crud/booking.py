@@ -33,15 +33,28 @@ def get_booking_by_id(
     db: Session,
     booking_id: int,
 ) -> Booking | None:
+
     statement = (
+
+    return db.scalar(
         select(Booking)
         .options(
             joinedload(Booking.room)
                 .joinedload(Room.hotel),
+
             joinedload(Booking.room)
                 .joinedload(Room.images),
         )
         .where(Booking.id == booking_id)
+
+
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+        .where(
+            Booking.id == booking_id
+        )
+
     )
 
     return db.execute(statement).unique().scalar_one_or_none()
@@ -70,10 +83,22 @@ def get_bookings(
     )
 
     return list(
+
         db.execute(statement)
         .unique()
         .scalars()
         .all()
+
+        db.scalars(
+            select(Booking)
+            .options(
+                joinedload(Booking.room)
+                    .joinedload(Room.hotel),
+                joinedload(Booking.room)
+                    .joinedload(Room.images),
+            )
+        ).all()
+
     )
 
 def get_bookings_by_traveler(
@@ -94,10 +119,25 @@ def get_bookings_by_traveler(
     )
 
     return list(
+
         db.execute(statement)
         .unique()
         .scalars()
         .all()
+
+        db.scalars(
+            select(Booking)
+            .options(
+                joinedload(Booking.room)
+                    .joinedload(Room.hotel),
+                joinedload(Booking.room)
+                    .joinedload(Room.images),
+            )
+            .where(
+                Booking.traveler_id == traveler_id
+            )
+        ).all()
+
     )
 
 def get_bookings_by_room(
