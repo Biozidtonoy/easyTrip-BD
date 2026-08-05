@@ -1,0 +1,44 @@
+name: Deploy Backend to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify Python Version
+        run: python --version
+
+      - name: Prepare Lambda Package
+        run: |
+          cd backend
+          rm -rf lambda_package
+          mkdir lambda_package
+
+      - name: Build Lambda Dependencies
+        run: |
+          cd backend
+          docker run --rm \
+            --entrypoint /bin/bash \
+            -v "${{ github.workspace }}/backend:/var/task" \
+            public.ecr.aws/lambda/python:3.11 \
+            -c "pip install -r /var/task/requirements.txt -t /var/task/lambda_package"
+
+      - name: Copy Backend Files
+        run: |
+          cd backend
+          cp -r app lambda_package/
+          cp .env lambda_package/
+          cp alembic.ini lambda_package/

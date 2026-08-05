@@ -1,10 +1,10 @@
 from sqlalchemy import select
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import Session, joinedload
 
 from app.models.booking import Booking
 from app.models.room import Room
 from app.schemas.booking import BookingCreate, BookingUpdate
+
 
 def create_booking(
     db: Session,
@@ -29,35 +29,26 @@ def create_booking(
 
     return booking
 
+
 def get_booking_by_id(
     db: Session,
     booking_id: int,
 ) -> Booking | None:
-
     statement = (
-
-    return db.scalar(
         select(Booking)
         .options(
             joinedload(Booking.room)
                 .joinedload(Room.hotel),
-
-            joinedload(Booking.room)
-                .joinedload(Room.images),
-        )
-        .where(Booking.id == booking_id)
-
-
             joinedload(Booking.room)
                 .joinedload(Room.images),
         )
         .where(
             Booking.id == booking_id
         )
-
     )
 
     return db.execute(statement).unique().scalar_one_or_none()
+
 
 def get_booking_by_reference(
     db: Session,
@@ -68,6 +59,7 @@ def get_booking_by_reference(
             Booking.booking_reference == booking_reference
         )
     )
+
 
 def get_bookings(
     db: Session,
@@ -83,23 +75,12 @@ def get_bookings(
     )
 
     return list(
-
         db.execute(statement)
         .unique()
         .scalars()
         .all()
-
-        db.scalars(
-            select(Booking)
-            .options(
-                joinedload(Booking.room)
-                    .joinedload(Room.hotel),
-                joinedload(Booking.room)
-                    .joinedload(Room.images),
-            )
-        ).all()
-
     )
+
 
 def get_bookings_by_traveler(
     db: Session,
@@ -119,26 +100,12 @@ def get_bookings_by_traveler(
     )
 
     return list(
-
         db.execute(statement)
         .unique()
         .scalars()
         .all()
-
-        db.scalars(
-            select(Booking)
-            .options(
-                joinedload(Booking.room)
-                    .joinedload(Room.hotel),
-                joinedload(Booking.room)
-                    .joinedload(Room.images),
-            )
-            .where(
-                Booking.traveler_id == traveler_id
-            )
-        ).all()
-
     )
+
 
 def get_bookings_by_room(
     db: Session,
@@ -152,12 +119,12 @@ def get_bookings_by_room(
         ).all()
     )
 
+
 def update_booking(
     db: Session,
     booking: Booking,
     booking_data: BookingUpdate,
 ) -> Booking:
-
     update_data = booking_data.model_dump(
         exclude_unset=True
     )
@@ -169,6 +136,7 @@ def update_booking(
     db.refresh(booking)
 
     return booking
+
 
 def delete_booking(
     db: Session,
