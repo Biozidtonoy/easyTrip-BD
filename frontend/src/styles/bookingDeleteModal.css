@@ -1,0 +1,105 @@
+.booking-delete-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.booking-delete-modal {
+  width: 420px;
+  max-width: 92%;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 30px;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,.25);
+
+  animation: popup .18s ease;
+}
+
+.booking-delete-modal h2 {
+  margin-bottom: 15px;
+}
+
+.booking-delete-modal p {
+  line-height: 1.6;
+}
+
+.booking-delete-warning {
+  margin-top: 12px;
+
+  color: #dc2626;
+
+  font-weight: 600;
+}
+
+.booking-delete-actions {
+  margin-top: 30px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+.booking-delete-no,
+.booking-delete-yes {
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 8px;
+
+  padding: 11px 18px;
+
+  font-size: .95rem;
+
+  transition: .2s;
+}
+
+.booking-delete-no {
+  background: #e5e7eb;
+}
+
+.booking-delete-no:hover {
+  background: #d1d5db;
+}
+
+.booking-delete-yes {
+  background: #dc2626;
+
+  color: white;
+}
+
+.booking-delete-yes:hover {
+  background: #b91c1c;
+}
+
+.booking-delete-no:disabled,
+.booking-delete-yes:disabled {
+  cursor: not-allowed;
+
+  opacity: .7;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
