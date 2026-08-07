@@ -132,3 +132,24 @@
     }
 
 }
+
+.edit-booking-btn{
+    margin-bottom: 16px;
+    width: 100%;
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:.7rem 1rem;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+.edit-booking-btn:hover{
+
+    background:#1d4ed8;
+}

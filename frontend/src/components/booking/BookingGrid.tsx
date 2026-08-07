@@ -6,12 +6,16 @@ import "../../styles/bookingGrid.css";
 
 interface BookingGridProps {
   bookings: Booking[];
+
   onCancel: (bookingId: number) => void;
+
+  onEdit: (booking: Booking) => void;
 }
 
 const BookingGrid = ({
   bookings,
   onCancel,
+  onEdit,
 }: BookingGridProps) => {
   return (
     <section className="booking-grid">
@@ -20,6 +24,7 @@ const BookingGrid = ({
           key={booking.id}
           booking={booking}
           onCancel={onCancel}
+          onEdit={onEdit}
         />
       ))}
     </section>

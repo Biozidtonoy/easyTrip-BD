@@ -13,19 +13,21 @@ import "../../styles/bookingCard.css";
 
 interface BookingCardProps {
   booking: Booking;
+
   onCancel: (bookingId: number) => void;
+
+  onEdit: (booking: Booking) => void;
 }
 
 const BookingCard = ({
   booking,
   onCancel,
+  onEdit,
 }: BookingCardProps) => {
   return (
     <article className="booking-card-item">
       <div className="booking-card-header">
-        <h3 className="booking-reference">
-          {booking.booking_reference}
-        </h3>
+        <h3 className="booking-reference">{booking.booking_reference}</h3>
 
         <span className={`status ${booking.status.toLowerCase()}`}>
           {booking.status}
@@ -39,9 +41,7 @@ const BookingCard = ({
             <span>Hotel</span>
           </div>
 
-          <span className="booking-value">
-            {booking.room.hotel.name}
-          </span>
+          <span className="booking-value">{booking.room.hotel.name}</span>
         </div>
 
         <div className="booking-detail">
@@ -50,9 +50,7 @@ const BookingCard = ({
             <span>Room Type</span>
           </div>
 
-          <span className="booking-value">
-            {booking.room.room_type}
-          </span>
+          <span className="booking-value">{booking.room.room_type}</span>
         </div>
 
         <div className="booking-detail">
@@ -61,9 +59,7 @@ const BookingCard = ({
             <span>Room Number</span>
           </div>
 
-          <span className="booking-value">
-            {booking.room.room_number}
-          </span>
+          <span className="booking-value">{booking.room.room_number}</span>
         </div>
 
         <div className="booking-detail">
@@ -73,14 +69,11 @@ const BookingCard = ({
           </div>
 
           <span className="booking-value">
-            {new Date(booking.check_in_date).toLocaleDateString(
-              "en-GB",
-              {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              }
-            )}
+            {new Date(booking.check_in_date).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })}
           </span>
         </div>
 
@@ -91,14 +84,11 @@ const BookingCard = ({
           </div>
 
           <span className="booking-value">
-            {new Date(booking.check_out_date).toLocaleDateString(
-              "en-GB",
-              {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              }
-            )}
+            {new Date(booking.check_out_date).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })}
           </span>
         </div>
 
@@ -129,6 +119,10 @@ const BookingCard = ({
       </div>
 
       <div className="booking-card-actions">
+        <button className="edit-booking-btn" onClick={() => onEdit(booking)}>
+          Edit Booking
+        </button>
+
         <button
           className="cancel-booking-btn"
           onClick={() => onCancel(booking.id)}

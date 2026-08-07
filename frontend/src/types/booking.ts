@@ -5,6 +5,12 @@ export interface BookingCreate {
   special_requests?: string;
 }
 
+export interface BookingUpdate {
+  check_in_date?: string;
+  check_out_date?: string;
+  special_requests?: string;
+}
+
 export interface Booking {
   id: number;
   booking_reference: string;

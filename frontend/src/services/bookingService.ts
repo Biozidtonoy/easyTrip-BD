@@ -3,6 +3,7 @@ import api from "../api/axios";
 import type {
   Booking,
   BookingCreate,
+  BookingUpdate,
 } from "../types/booking";
 
 export const createBooking = async (
@@ -10,6 +11,18 @@ export const createBooking = async (
 ): Promise<Booking> => {
   const response = await api.post<Booking>(
     "/bookings",
+    bookingData
+  );
+
+  return response.data;
+};
+
+export const updateBooking = async (
+  bookingId: number,
+  bookingData: BookingUpdate
+): Promise<Booking> => {
+  const response = await api.patch<Booking>(
+    `/bookings/${bookingId}`,
     bookingData
   );
 
