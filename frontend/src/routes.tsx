@@ -15,6 +15,8 @@ import BookingPage from "./pages/BookingPage";
 import BecomePartnerPage from "./pages/BecomePartnerPage";
 import ApplicationStatusPage from "./pages/ApplicationStatusPage";
 import AdminDestinationsPage from "./pages/AdminDestinationsPage";
+import AdminApplicationsPage from "./pages/AdminApplicationsPage";
+import AdminApplicationDetailsPage from "./pages/AdminApplicationDetailsPage";
 
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
@@ -104,6 +106,14 @@ const routes = [
           {
             path: "/admin/destinations",
             element: <AdminDestinationsPage />,
+          },
+          {
+            path: "/admin/applications",
+            element: <AdminApplicationsPage />,
+          },
+          {
+            path: "/admin/applications/:id",
+            element: <AdminApplicationDetailsPage />,
           },
         ],
       },

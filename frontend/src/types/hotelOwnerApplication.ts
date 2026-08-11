@@ -34,7 +34,7 @@ export interface HotelOwnerApplication {
   trade_license_document: string | null;
 
   status: ApplicationStatus;
-
+  rejection_reason: string | null;
   created_at: string;
   updated_at: string;
 }

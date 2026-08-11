@@ -92,3 +92,45 @@ export const getHotelOwnerApplications =
 
     return response.data;
   };
+
+export const getHotelOwnerApplicationById = async (
+  id: number,
+): Promise<HotelOwnerApplication> => {
+  const response =
+    await api.get<HotelOwnerApplication>(
+      `/hotel-owner-applications/${id}`,
+    );
+
+  return response.data;
+};
+
+export const approveHotelOwnerApplication = async (
+  id: number,
+): Promise<HotelOwnerApplication> => {
+  const response =
+    await api.patch<HotelOwnerApplication>(
+      `/hotel-owner-applications/${id}/approve`,
+    );
+
+  return response.data;
+};
+
+export const rejectHotelOwnerApplication = async (
+  applicationId: number,
+  rejectionReason: string,
+): Promise<HotelOwnerApplication> => {
+  const formData = new FormData();
+
+  formData.append(
+    "rejection_reason",
+    rejectionReason,
+  );
+
+  const response =
+    await api.patch<HotelOwnerApplication>(
+      `/hotel-owner-applications/${applicationId}/reject`,
+      formData,
+    );
+
+  return response.data;
+};

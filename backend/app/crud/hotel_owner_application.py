@@ -89,3 +89,30 @@ def get_applications(
             select(HotelOwnerApplication)
         ).all()
     )
+
+def update_application_status(
+    db: Session,
+    application: HotelOwnerApplication,
+    status: ApplicationStatus,
+) -> HotelOwnerApplication:
+
+    application.status = status
+
+    db.commit()
+    db.refresh(application)
+
+    return application
+
+def reject_application(
+    db: Session,
+    application: HotelOwnerApplication,
+    rejection_reason: str,
+) -> HotelOwnerApplication:
+
+    application.status = ApplicationStatus.REJECTED
+    application.rejection_reason = rejection_reason
+
+    db.commit()
+    db.refresh(application)
+
+    return application

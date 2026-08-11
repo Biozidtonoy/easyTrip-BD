@@ -101,6 +101,6 @@ class HotelOwnerApplicationResponse(BaseModel):
     trade_license_document: str | None
 
     status: ApplicationStatus
-
+    rejection_reason: str | None
     created_at: datetime
     updated_at: datetime

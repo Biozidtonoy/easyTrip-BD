@@ -25,7 +25,6 @@ import type {
 
 import "../styles/applicationStatus.css";
 
-
 const ApplicationStatusPage = () => {
   const [application, setApplication] =
     useState<HotelOwnerApplication | null>(null);
@@ -40,8 +39,7 @@ const ApplicationStatusPage = () => {
         setLoading(true);
         setError("");
 
-        const data =
-          await getMyHotelOwnerApplication();
+        const data = await getMyHotelOwnerApplication();
 
         setApplication(data);
       } catch (error: unknown) {
@@ -52,9 +50,7 @@ const ApplicationStatusPage = () => {
 
           setError(message);
 
-          if (
-            error.response?.status !== 404
-          ) {
+          if (error.response?.status !== 404) {
             toast.error(message);
           }
         } else {
@@ -72,6 +68,9 @@ const ApplicationStatusPage = () => {
     fetchApplication();
   }, []);
 
+  /*
+   * Loading state
+   */
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -79,21 +78,14 @@ const ApplicationStatusPage = () => {
   /*
    * No application exists
    */
-  if (
-    error &&
-    !application
-  ) {
+  if (error && !application) {
     return (
       <main className="application-status-page">
         <section className="application-status-container">
           <div className="application-empty-card">
-            <FaFileAlt
-              className="application-empty-icon"
-            />
+            <FaFileAlt className="application-empty-icon" />
 
-            <h1>
-              No Application Found
-            </h1>
+            <h1>No Application Found</h1>
 
             <p>
               You have not submitted a hotel
@@ -116,20 +108,15 @@ const ApplicationStatusPage = () => {
     return null;
   }
 
-  const status =
-    application.status.toUpperCase();
+  const status = application.status.toUpperCase();
 
   const getStatusIcon = () => {
     if (status === "APPROVED") {
-      return (
-        <FaCheckCircle />
-      );
+      return <FaCheckCircle />;
     }
 
     if (status === "REJECTED") {
-      return (
-        <FaTimesCircle />
-      );
+      return <FaTimesCircle />;
     }
 
     return <FaClock />;
@@ -161,6 +148,7 @@ const ApplicationStatusPage = () => {
       <section className="application-status-container">
 
         {/* Page Header */}
+
         <div className="application-status-header">
           <h1>
             Application Status
@@ -174,6 +162,7 @@ const ApplicationStatusPage = () => {
 
 
         {/* Status Card */}
+
         <div
           className={`application-status-card ${status.toLowerCase()}`}
         >
@@ -197,7 +186,54 @@ const ApplicationStatusPage = () => {
         </div>
 
 
+        {/* Approved Message */}
+
+        {status === "APPROVED" && (
+          <div className="application-approved-message">
+            <div className="application-approved-icon">
+              <FaCheckCircle />
+            </div>
+
+            <div>
+              <h2>
+                Application Approved
+              </h2>
+
+              <p>
+                Congratulations! Your hotel owner
+                application has been approved. You
+                can now access the hotel owner
+                dashboard.
+              </p>
+            </div>
+          </div>
+        )}
+
+
+        {/* Rejection Message */}
+
+        {status === "REJECTED" &&
+          application.rejection_reason && (
+            <div className="application-rejection-message">
+              <div className="application-rejection-icon">
+                <FaTimesCircle />
+              </div>
+
+              <div>
+                <h2>
+                  Why was your application rejected?
+                </h2>
+
+                <p>
+                  {application.rejection_reason}
+                </p>
+              </div>
+            </div>
+          )}
+
+
         {/* Application Information */}
+
         <div className="application-card">
 
           <div className="application-card-header">
@@ -240,6 +276,7 @@ const ApplicationStatusPage = () => {
 
               <span className="application-detail-value">
                 <FaPhone />
+
                 {application.phone}
               </span>
             </div>
@@ -252,6 +289,7 @@ const ApplicationStatusPage = () => {
 
               <span className="application-detail-value">
                 <FaMapMarkerAlt />
+
                 {application.district}
               </span>
             </div>
@@ -270,6 +308,7 @@ const ApplicationStatusPage = () => {
 
             {application.website && (
               <div className="application-detail">
+
                 <span className="application-detail-label">
                   Website
                 </span>
@@ -281,16 +320,20 @@ const ApplicationStatusPage = () => {
                   className="application-detail-link"
                 >
                   <FaGlobe />
+
                   Visit Website
                 </a>
+
               </div>
             )}
 
           </div>
+
         </div>
 
 
         {/* Business Information */}
+
         <div className="application-card">
 
           <div className="application-card-header">
@@ -305,6 +348,7 @@ const ApplicationStatusPage = () => {
           <div className="application-details-grid">
 
             <div className="application-detail">
+
               <span className="application-detail-label">
                 Trade License Number
               </span>
@@ -312,30 +356,38 @@ const ApplicationStatusPage = () => {
               <span className="application-detail-value">
                 {application.trade_license_number}
               </span>
+
             </div>
 
 
             <div className="application-detail">
+
               <span className="application-detail-label">
                 Trade License Document
               </span>
 
-              <a
-                href={
-                  application.trade_license_document ??
-                  "#"
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="application-detail-link"
-              >
-                <FaFileAlt />
-                View Document
-              </a>
+              {application.trade_license_document ? (
+                <a
+                  href={application.trade_license_document}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="application-detail-link"
+                >
+                  <FaFileAlt />
+
+                  View Document
+                </a>
+              ) : (
+                <span className="application-detail-value">
+                  No document available
+                </span>
+              )}
+
             </div>
 
 
             <div className="application-detail application-detail-full">
+
               <span className="application-detail-label">
                 Hotel Description
               </span>
@@ -343,13 +395,16 @@ const ApplicationStatusPage = () => {
               <p className="application-description">
                 {application.hotel_description}
               </p>
+
             </div>
 
           </div>
+
         </div>
 
 
-        {/* Application Dates */}
+        {/* Application Timeline */}
+
         <div className="application-card">
 
           <div className="application-card-header">
@@ -364,6 +419,7 @@ const ApplicationStatusPage = () => {
           <div className="application-timeline">
 
             <div className="timeline-item">
+
               <span className="timeline-label">
                 Submitted
               </span>
@@ -380,10 +436,12 @@ const ApplicationStatusPage = () => {
                   },
                 )}
               </span>
+
             </div>
 
 
             <div className="timeline-item">
+
               <span className="timeline-label">
                 Last Updated
               </span>
@@ -400,9 +458,11 @@ const ApplicationStatusPage = () => {
                   },
                 )}
               </span>
+
             </div>
 
           </div>
+
         </div>
 
       </section>
