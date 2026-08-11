@@ -1,3 +1,8 @@
+export type ApplicationStatus =
+  | "PENDING"
+  | "APPROVED"
+  | "REJECTED";
+
 export interface HotelOwnerApplicationCreate {
   hotel_name: string;
   business_email: string;
@@ -28,7 +33,7 @@ export interface HotelOwnerApplication {
   logo: string | null;
   trade_license_document: string | null;
 
-  status: string;
+  status: ApplicationStatus;
 
   created_at: string;
   updated_at: string;

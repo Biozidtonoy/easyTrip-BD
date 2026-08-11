@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.crud.hotel_owner_application import (
     create_hotel_owner_application,
     get_application_by_user_id,
+    get_applications,
     get_pending_application_by_user_id,
 )
 from app.enums.user_role import UserRole
@@ -102,3 +103,9 @@ def get_my_hotel_owner_application_service(
         )
 
     return application
+
+
+def get_hotel_owner_applications_service(
+    db: Session,
+):
+    return get_applications(db)
