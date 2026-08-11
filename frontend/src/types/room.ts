@@ -15,3 +15,20 @@ export interface Room {
   created_at: string;
   updated_at: string;
 }
+
+export interface RoomCreate {
+  hotel_id: number;
+  room_number: string;
+  room_type: string;
+  price_per_night: number;
+  capacity: number;
+}
+
+
+export interface RoomUpdate {
+  room_number?: string;
+  room_type?: string;
+  price_per_night?: number;
+  capacity?: number;
+  is_available?: boolean;
+}

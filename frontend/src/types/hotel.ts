@@ -11,3 +11,24 @@ export interface Hotel {
   created_at: string;
   updated_at: string;
 }
+
+export interface HotelCreate {
+  name: string;
+  description: string;
+  address: string;
+  city: string;
+  district: string;
+  destination_id: number;
+  image: File;
+}
+
+
+export interface HotelUpdate {
+  name?: string;
+  description?: string;
+  address?: string;
+  city?: string;
+  district?: string;
+  destination_id?: number;
+  image?: File;
+}

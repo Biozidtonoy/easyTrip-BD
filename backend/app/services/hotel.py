@@ -2,9 +2,10 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from fastapi import UploadFile
 from app.utils.file_upload import save_image
-from app.crud.hotel import create_hotel, get_hotel_by_id, update_hotel, get_hotels,delete_hotel
+from app.crud.hotel import create_hotel, get_hotel_by_id, update_hotel, get_hotels,delete_hotel, get_hotels_by_owner_id
 from app.enums.user_role import UserRole
 from app.models.user import User
+from app.models.hotel import Hotel
 from app.schemas.hotel import HotelCreate, HotelUpdate
 from app.crud.destination import get_destination_by_id
 
@@ -68,6 +69,15 @@ def list_hotels_service(
         destination_id,
     )
 
+def get_my_hotels_service(
+    db: Session,
+    current_user: User,
+) -> list:
+
+    return get_hotels_by_owner_id(
+        db,
+        current_user.id,
+    )
 
 def update_hotel_service(
     db: Session,
