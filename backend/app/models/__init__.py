@@ -5,6 +5,7 @@ from app.models.room import Room
 from app.models.booking import Booking
 from app.models.review import Review
 from app.models.room_image import RoomImage
+from app.models.hotel_owner_application import HotelOwnerApplication
 
 __all__ = [
     "User",
@@ -14,4 +15,5 @@ __all__ = [
     "Booking",
     "Review",
     "RoomImage",
+    "HotelOwnerApplication",
     ]
