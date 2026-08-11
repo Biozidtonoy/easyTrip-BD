@@ -12,7 +12,7 @@ import RoleProtectedRoute from "./routes/RoleProtectedRoute";
 import MainLayout from "./components/layout/MainLayout";
 import HotelsPage from "./pages/HotelsPage";
 import BookingPage from "./pages/BookingPage";
-
+import BecomePartnerPage from "./pages/BecomePartnerPage";
 
 
 const routes = [
@@ -60,6 +60,10 @@ const routes = [
           {
             path: "/bookings/new/:roomId",
             element: <BookingPage />,
+          },
+          {
+            path: "/partner",
+            element: <BecomePartnerPage />,
           },
         ],
       },

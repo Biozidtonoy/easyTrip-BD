@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from app.models.hotel import Hotel
     from app.models.booking import Booking
     from app.models.review import Review
+    from app.models.hotel_owner_application import HotelOwnerApplication
 
 
 class User(BaseModel):
@@ -58,5 +59,10 @@ class User(BaseModel):
 
     reviews: Mapped[list["Review"]] = relationship(
         back_populates="traveler",
+        cascade="all, delete-orphan",
+    )
+
+    hotel_owner_applications: Mapped[list["HotelOwnerApplication"]] = relationship(
+        back_populates="applicant",
         cascade="all, delete-orphan",
     )
