@@ -1,4 +1,11 @@
-from fastapi import APIRouter, Depends, File, UploadFile, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    UploadFile,
+    status,
+)
+
 from sqlalchemy.orm import Session
 
 from app.core.security import get_current_user
@@ -10,6 +17,7 @@ from app.schemas.hotel_owner_application import (
 )
 from app.services.hotel_owner_application import (
     create_hotel_owner_application_service,
+    get_my_hotel_owner_application_service,
 )
 
 
@@ -39,4 +47,19 @@ def create_hotel_owner_application(
         current_user=current_user,
         logo=logo,
         trade_license_document=trade_license_document,
+    )
+
+
+@router.get(
+    "/me",
+    response_model=HotelOwnerApplicationResponse,
+    status_code=status.HTTP_200_OK,
+)
+def get_my_hotel_owner_application(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    return get_my_hotel_owner_application_service(
+        db=db,
+        current_user=current_user,
     )

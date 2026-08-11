@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.crud.hotel_owner_application import (
     create_hotel_owner_application,
+    get_application_by_user_id,
     get_pending_application_by_user_id,
 )
 from app.enums.user_role import UserRole
@@ -83,3 +84,21 @@ def create_hotel_owner_application_service(
             trade_license_document_url
         ),
     )
+
+
+def get_my_hotel_owner_application_service(
+    db: Session,
+    current_user: User,
+):
+    application = get_application_by_user_id(
+        db,
+        current_user.id,
+    )
+
+    if application is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Hotel owner application not found.",
+        )
+
+    return application

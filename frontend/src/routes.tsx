@@ -13,7 +13,7 @@ import MainLayout from "./components/layout/MainLayout";
 import HotelsPage from "./pages/HotelsPage";
 import BookingPage from "./pages/BookingPage";
 import BecomePartnerPage from "./pages/BecomePartnerPage";
-
+import ApplicationStatusPage from "./pages/ApplicationStatusPage";
 
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
@@ -26,6 +26,7 @@ const routes = [
         path: "/",
         element: <HomePage />,
       },
+
       {
         path: "/destinations",
         element: <DestinationPage />,
@@ -40,6 +41,7 @@ const routes = [
         path: "/destinations/:id",
         element: <DestinationDetailsPage />,
       },
+
       {
         path: "/hotels/:id",
         element: <HotelDetailsPage />,
@@ -47,30 +49,48 @@ const routes = [
 
       // ---------- Traveler Routes ----------
       {
-        element: <RoleProtectedRoute allowedRoles={["traveler"]} />,
+        element: (
+          <RoleProtectedRoute
+            allowedRoles={["traveler"]}
+          />
+        ),
+
         children: [
           {
             path: "/profile",
             element: <ProfilePage />,
           },
+
           {
             path: "/my-bookings",
             element: <MyBookingsPage />,
           },
+
           {
             path: "/bookings/new/:roomId",
             element: <BookingPage />,
           },
+
           {
             path: "/partner",
             element: <BecomePartnerPage />,
+          },
+
+          {
+            path: "/partner/application-status",
+            element: <ApplicationStatusPage />,
           },
         ],
       },
 
       // ---------- Hotel Owner Routes ----------
       {
-        element: <RoleProtectedRoute allowedRoles={["hotel_owner"]} />,
+        element: (
+          <RoleProtectedRoute
+            allowedRoles={["hotel_owner"]}
+          />
+        ),
+
         children: [
           {
             path: "/owner/dashboard",
@@ -81,7 +101,12 @@ const routes = [
 
       // ---------- Admin Routes ----------
       {
-        element: <RoleProtectedRoute allowedRoles={["admin"]} />,
+        element: (
+          <RoleProtectedRoute
+            allowedRoles={["admin"]}
+          />
+        ),
+
         children: [
           {
             path: "/admin/dashboard",
@@ -97,6 +122,7 @@ const routes = [
     path: "/login",
     element: <LoginPage />,
   },
+
   {
     path: "/register",
     element: <RegisterPage />,
