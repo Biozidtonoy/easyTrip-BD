@@ -15,7 +15,7 @@ from app.api.bookings import router as booking_router
 from app.api.reviews import router as review_router
 
 from app.api.room_images import router as room_image_router
-
+from app.api.hotel_owner_applications import router as hotel_owner_application_router
 
 
 app = FastAPI()
@@ -41,6 +41,7 @@ app.include_router(room_router)
 app.include_router(booking_router)
 app.include_router(review_router)
 app.include_router(room_image_router)
+app.include_router(hotel_owner_application_router)
 
 @app.get("/")
 def root():
