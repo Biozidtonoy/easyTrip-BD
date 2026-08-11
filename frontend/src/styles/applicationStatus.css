@@ -1,0 +1,322 @@
+.application-status-page {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: #f7f8fa;
+}
+
+.application-status-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.application-status-header {
+  margin-bottom: 30px;
+}
+
+.application-status-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.application-status-header p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+
+/* Status Card */
+
+.application-status-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 25px;
+  margin-bottom: 25px;
+
+  border-radius: 14px;
+  border: 1px solid #ddd;
+
+  background: white;
+}
+
+.application-status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  font-size: 28px;
+}
+
+.application-status-content {
+  flex: 1;
+}
+
+.application-status-label {
+  display: block;
+  margin-bottom: 5px;
+
+  font-size: 13px;
+  color: #777;
+}
+
+.application-status-content h2 {
+  margin: 0 0 5px;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.application-status-content p {
+  margin: 0;
+  color: #666;
+}
+
+
+/* Pending */
+
+.application-status-card.pending {
+  border-color: #f0c36a;
+  background: #fffaf0;
+}
+
+.application-status-card.pending
+.application-status-icon {
+  color: #d99000;
+  background: #fff0c7;
+}
+
+
+/* Approved */
+
+.application-status-card.approved {
+  border-color: #8bd4a6;
+  background: #f2fff6;
+}
+
+.application-status-card.approved
+.application-status-icon {
+  color: #198754;
+  background: #d8f5e3;
+}
+
+
+/* Rejected */
+
+.application-status-card.rejected {
+  border-color: #e5a0a0;
+  background: #fff5f5;
+}
+
+.application-status-card.rejected
+.application-status-icon {
+  color: #dc3545;
+  background: #fbdada;
+}
+
+
+/* General Cards */
+
+.application-card {
+  padding: 25px;
+  margin-bottom: 25px;
+
+  border-radius: 14px;
+  border: 1px solid #e5e5e5;
+
+  background: white;
+}
+
+.application-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 22px;
+}
+
+.application-card-header svg {
+  font-size: 20px;
+}
+
+.application-card-header h2 {
+  margin: 0;
+
+  font-size: 20px;
+}
+
+
+/* Details */
+
+.application-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.application-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.application-detail-full {
+  grid-column: 1 / -1;
+}
+
+.application-detail-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #777;
+}
+
+.application-detail-value {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 15px;
+  color: #222;
+
+  word-break: break-word;
+}
+
+.application-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  width: fit-content;
+
+  color: #1769aa;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.application-detail-link:hover {
+  text-decoration: underline;
+}
+
+.application-description {
+  margin: 0;
+
+  line-height: 1.7;
+  color: #444;
+}
+
+
+/* Timeline */
+
+.application-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.timeline-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #777;
+}
+
+.timeline-value {
+  font-size: 15px;
+  color: #222;
+}
+
+
+/* Empty State */
+
+.application-empty-card {
+  max-width: 550px;
+
+  margin: 60px auto;
+  padding: 50px 30px;
+
+  text-align: center;
+
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+}
+
+.application-empty-icon {
+  margin-bottom: 20px;
+
+  font-size: 45px;
+}
+
+.application-empty-card h1 {
+  margin-bottom: 10px;
+}
+
+.application-empty-card p {
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.application-primary-btn {
+  display: inline-block;
+
+  padding: 12px 22px;
+
+  border-radius: 8px;
+
+  background: #222;
+  color: white;
+
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.application-primary-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .application-status-page {
+    padding: 40px 15px;
+  }
+
+  .application-status-header h1 {
+    font-size: 27px;
+  }
+
+  .application-status-card {
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .application-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .application-detail-full {
+    grid-column: auto;
+  }
+
+  .application-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .application-card {
+    padding: 20px;
+  }
+}
