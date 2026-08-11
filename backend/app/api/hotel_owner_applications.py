@@ -8,7 +8,8 @@ from fastapi import (
 
 from sqlalchemy.orm import Session
 
-from app.core.security import get_current_user
+from app.core.security import get_current_user, require_roles
+from app.enums.user_role import UserRole
 from app.db.database import get_db
 from app.models.user import User
 from app.schemas.hotel_owner_application import (
@@ -18,6 +19,7 @@ from app.schemas.hotel_owner_application import (
 from app.services.hotel_owner_application import (
     create_hotel_owner_application_service,
     get_my_hotel_owner_application_service,
+    get_hotel_owner_applications_service,
 )
 
 
@@ -62,4 +64,20 @@ def get_my_hotel_owner_application(
     return get_my_hotel_owner_application_service(
         db=db,
         current_user=current_user,
+    )
+
+
+@router.get(
+    "",
+    response_model=list[HotelOwnerApplicationResponse],
+    status_code=status.HTTP_200_OK,
+)
+def get_hotel_owner_applications(
+    current_user: User = Depends(
+        require_roles(UserRole.ADMIN)
+    ),
+    db: Session = Depends(get_db),
+):
+    return get_hotel_owner_applications_service(
+        db=db,
     )

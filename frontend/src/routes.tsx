@@ -14,6 +14,7 @@ import HotelsPage from "./pages/HotelsPage";
 import BookingPage from "./pages/BookingPage";
 import BecomePartnerPage from "./pages/BecomePartnerPage";
 import ApplicationStatusPage from "./pages/ApplicationStatusPage";
+import AdminDestinationsPage from "./pages/AdminDestinationsPage";
 
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
@@ -49,11 +50,7 @@ const routes = [
 
       // ---------- Traveler Routes ----------
       {
-        element: (
-          <RoleProtectedRoute
-            allowedRoles={["traveler"]}
-          />
-        ),
+        element: <RoleProtectedRoute allowedRoles={["traveler"]} />,
 
         children: [
           {
@@ -85,11 +82,7 @@ const routes = [
 
       // ---------- Hotel Owner Routes ----------
       {
-        element: (
-          <RoleProtectedRoute
-            allowedRoles={["hotel_owner"]}
-          />
-        ),
+        element: <RoleProtectedRoute allowedRoles={["hotel_owner"]} />,
 
         children: [
           {
@@ -101,16 +94,16 @@ const routes = [
 
       // ---------- Admin Routes ----------
       {
-        element: (
-          <RoleProtectedRoute
-            allowedRoles={["admin"]}
-          />
-        ),
+        element: <RoleProtectedRoute allowedRoles={["admin"]} />,
 
         children: [
           {
             path: "/admin/dashboard",
             element: <AdminDashboardPage />,
+          },
+          {
+            path: "/admin/destinations",
+            element: <AdminDestinationsPage />,
           },
         ],
       },

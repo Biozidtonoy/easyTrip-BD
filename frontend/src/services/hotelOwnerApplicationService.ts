@@ -5,7 +5,6 @@ import type {
   HotelOwnerApplicationCreate,
 } from "../types/hotelOwnerApplication";
 
-
 export const createHotelOwnerApplication = async (
   applicationData: HotelOwnerApplicationCreate,
 ): Promise<HotelOwnerApplication> => {
@@ -65,19 +64,31 @@ export const createHotelOwnerApplication = async (
     applicationData.trade_license_document,
   );
 
-  const response = await api.post<HotelOwnerApplication>(
-    "/hotel-owner-applications",
-    formData,
-  );
+  const response =
+    await api.post<HotelOwnerApplication>(
+      "/hotel-owner-applications",
+      formData,
+    );
 
   return response.data;
 };
 
+export const getMyHotelOwnerApplication =
+  async (): Promise<HotelOwnerApplication> => {
+    const response =
+      await api.get<HotelOwnerApplication>(
+        "/hotel-owner-applications/me",
+      );
 
-export const getMyHotelOwnerApplication = async (): Promise<HotelOwnerApplication> => {
-  const response = await api.get<HotelOwnerApplication>(
-    "/hotel-owner-applications/me",
-  );
+    return response.data;
+  };
 
-  return response.data;
-};
+export const getHotelOwnerApplications =
+  async (): Promise<HotelOwnerApplication[]> => {
+    const response =
+      await api.get<HotelOwnerApplication[]>(
+        "/hotel-owner-applications",
+      );
+
+    return response.data;
+  };
