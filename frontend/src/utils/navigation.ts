@@ -68,6 +68,10 @@ export const getNavigationLinks = (
           label: "Dashboard",
           path: "/admin/dashboard",
         },
+        {
+          label: "Applications",
+          path: "/admin/applications",
+        },
       ];
 
     default:

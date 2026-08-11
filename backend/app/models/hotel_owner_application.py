@@ -74,7 +74,10 @@ class HotelOwnerApplication(BaseModel):
         default=ApplicationStatus.PENDING,
         nullable=False,
     )
-
+    rejection_reason: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
     applicant: Mapped["User"] = relationship(
         back_populates="hotel_owner_applications",
     )

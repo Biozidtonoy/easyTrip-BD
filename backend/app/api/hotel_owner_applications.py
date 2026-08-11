@@ -2,6 +2,7 @@ from fastapi import (
     APIRouter,
     Depends,
     File,
+    Form,
     UploadFile,
     status,
 )
@@ -20,6 +21,9 @@ from app.services.hotel_owner_application import (
     create_hotel_owner_application_service,
     get_my_hotel_owner_application_service,
     get_hotel_owner_applications_service,
+    get_hotel_owner_application_by_id_service,
+    approve_hotel_owner_application_service,
+    reject_hotel_owner_application_service,
 )
 
 
@@ -66,6 +70,23 @@ def get_my_hotel_owner_application(
         current_user=current_user,
     )
 
+@router.get(
+    "/{application_id}",
+    response_model=HotelOwnerApplicationResponse,
+    status_code=status.HTTP_200_OK,
+)
+def get_hotel_owner_application_by_id(
+    application_id: int,
+    current_user: User = Depends(
+        require_roles(UserRole.ADMIN)
+    ),
+    db: Session = Depends(get_db),
+):
+    return get_hotel_owner_application_by_id_service(
+        db=db,
+        application_id=application_id,
+    )
+
 
 @router.get(
     "",
@@ -80,4 +101,40 @@ def get_hotel_owner_applications(
 ):
     return get_hotel_owner_applications_service(
         db=db,
+    )
+
+@router.patch(
+    "/{application_id}/approve",
+    response_model=HotelOwnerApplicationResponse,
+    status_code=status.HTTP_200_OK,
+)
+def approve_hotel_owner_application(
+    application_id: int,
+    current_user: User = Depends(
+        require_roles(UserRole.ADMIN)
+    ),
+    db: Session = Depends(get_db),
+):
+    return approve_hotel_owner_application_service(
+        db=db,
+        application_id=application_id,
+    )
+
+@router.patch(
+    "/{application_id}/reject",
+    response_model=HotelOwnerApplicationResponse,
+    status_code=status.HTTP_200_OK,
+)
+def reject_hotel_owner_application(
+    application_id: int,
+    rejection_reason: str = Form(...),
+    current_user: User = Depends(
+        require_roles(UserRole.ADMIN)
+    ),
+    db: Session = Depends(get_db),
+):
+    return reject_hotel_owner_application_service(
+        db=db,
+        application_id=application_id,
+        rejection_reason=rejection_reason,
     )

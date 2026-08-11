@@ -1,0 +1,591 @@
+.admin-application-details {
+  min-height: calc(100vh - 160px);
+  background: #f7f8fa;
+  padding: 45px 20px 70px;
+}
+
+.admin-application-details-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.admin-application-details-header {
+  margin-bottom: 30px;
+}
+
+.admin-application-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+  border: none;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-application-back-button:hover {
+  color: #168044;
+}
+
+.admin-application-details-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.admin-application-details-title h1 {
+  margin: 0 0 7px;
+  color: #111827;
+  font-size: 36px;
+}
+
+.admin-application-details-title p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ---------- Status ---------- */
+
+.admin-application-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-application-status.pending {
+  background: #fff4d6;
+  color: #a16207;
+}
+
+.admin-application-status.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.admin-application-status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---------- Cards ---------- */
+
+.admin-details-card {
+  margin-bottom: 22px;
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.admin-details-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: #111827;
+}
+
+.admin-details-card-header svg {
+  color: #168044;
+}
+
+.admin-details-card-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* ---------- Hotel ---------- */
+
+.admin-details-hotel {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eef0f2;
+}
+
+.admin-details-logo,
+.admin-details-logo-placeholder {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+}
+
+.admin-details-logo {
+  object-fit: cover;
+}
+
+.admin-details-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5ee;
+  color: #168044;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.admin-details-hotel h3 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 24px;
+}
+
+.admin-details-hotel p {
+  max-width: 800px;
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* ---------- Information Grid ---------- */
+
+.admin-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.admin-details-item span,
+.admin-details-description > span,
+.admin-details-document > span,
+.admin-details-rejection-reason > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.admin-details-item p {
+  margin: 0;
+  color: #1f2937;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.admin-details-item a {
+  color: #168044;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-details-item a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Description ---------- */
+
+.admin-details-description {
+  margin-top: 28px;
+  padding-top: 25px;
+  border-top: 1px solid #eef0f2;
+}
+
+.admin-details-description p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* ---------- Document ---------- */
+
+.admin-details-document {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 28px;
+  padding-top: 25px;
+  border-top: 1px solid #eef0f2;
+}
+
+.admin-details-document p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.admin-details-document-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #eef5ff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-details-document-button:hover {
+  background: #e0ebff;
+}
+
+/* ---------- Rejection Reason ---------- */
+
+.admin-details-rejection-reason {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-left: 4px solid #dc2626;
+  border-radius: 8px;
+  background: #fef2f2;
+}
+
+.admin-details-rejection-reason > span {
+  color: #991b1b;
+}
+
+.admin-details-rejection-reason p {
+  margin: 0;
+  color: #7f1d1d;
+  line-height: 1.6;
+}
+
+/* ---------- Review Section ---------- */
+
+.admin-details-review-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 25px 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.admin-details-review-section h2 {
+  margin: 0 0 7px;
+  color: #111827;
+  font-size: 20px;
+}
+
+.admin-details-review-section p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.admin-details-review-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-details-reject-button,
+.admin-details-approve-button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-details-reject-button {
+  background: #fee2e2;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.admin-details-reject-button:hover {
+  background: #fecaca;
+}
+
+.admin-details-approve-button {
+  background: #dcfce7;
+  color: #15803d;
+  cursor: pointer;
+}
+
+.admin-details-approve-button:hover {
+  background: #bbf7d0;
+}
+
+.admin-details-reject-button:disabled,
+.admin-details-approve-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.admin-details-decision-message {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.approved-message {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.rejected-message {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---------- Reject Modal ---------- */
+
+.admin-reject-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(17, 24, 39, 0.55);
+}
+
+.admin-reject-modal {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.admin-reject-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 26px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-reject-modal-header h2 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 21px;
+}
+
+.admin-reject-modal-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.admin-reject-close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  background: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+}
+
+.admin-reject-close-button:hover {
+  background: #e5e7eb;
+}
+
+.admin-reject-modal-body {
+  padding: 25px 26px;
+}
+
+.admin-reject-modal-body label {
+  display: block;
+  margin-bottom: 9px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-reject-modal-body textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 140px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  outline: none;
+  color: #1f2937;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.admin-reject-modal-body textarea:focus {
+  border-color: #168044;
+  box-shadow: 0 0 0 3px rgba(22, 128, 68, 0.1);
+}
+
+.admin-reject-modal-body textarea:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.admin-reject-character-count {
+  display: block;
+  margin-top: 7px;
+  color: #9ca3af;
+  font-size: 12px;
+  text-align: right;
+}
+
+.admin-reject-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 26px 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-reject-cancel-button,
+.admin-reject-submit-button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-reject-cancel-button {
+  background: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+}
+
+.admin-reject-cancel-button:hover {
+  background: #e5e7eb;
+}
+
+.admin-reject-submit-button {
+  background: #dc2626;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.admin-reject-submit-button:hover {
+  background: #b91c1c;
+}
+
+.admin-reject-submit-button:disabled,
+.admin-reject-cancel-button:disabled,
+.admin-reject-close-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ---------- Loading ---------- */
+
+.admin-application-details-loading {
+  padding: 80px 20px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* ---------- Error ---------- */
+
+.admin-application-details-error {
+  padding: 40px;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  background: #fef2f2;
+}
+
+.admin-application-details-error h1 {
+  margin: 0 0 10px;
+  color: #991b1b;
+}
+
+.admin-application-details-error p {
+  margin: 0;
+  color: #b91c1c;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 800px) {
+  .admin-application-details-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-details-review-section {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-details-review-actions {
+    width: 100%;
+  }
+
+  .admin-details-review-actions button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 550px) {
+  .admin-application-details {
+    padding: 30px 15px 50px;
+  }
+
+  .admin-application-details-title h1 {
+    font-size: 28px;
+  }
+
+  .admin-details-card {
+    padding: 20px;
+  }
+
+  .admin-details-hotel {
+    flex-direction: column;
+  }
+
+  .admin-details-document {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-details-review-actions {
+    flex-direction: column;
+  }
+
+  .admin-details-review-actions button {
+    width: 100%;
+  }
+
+  .admin-reject-modal-header,
+  .admin-reject-modal-body,
+  .admin-reject-modal-actions {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .admin-reject-modal-actions {
+    flex-direction: column;
+  }
+
+  .admin-reject-modal-actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,337 @@
+.admin-applications {
+  min-height: calc(100vh - 160px);
+  background: #f7f8fa;
+  padding: 50px 20px 70px;
+}
+
+.admin-applications-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.admin-applications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.admin-applications-header-content {
+  max-width: 700px;
+}
+
+.admin-dashboard-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #e8f5ee;
+  color: #168044;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-applications-header h1 {
+  margin: 0 0 10px;
+  font-size: 36px;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.admin-applications-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* ---------- Summary ---------- */
+
+.admin-applications-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.admin-application-summary-card {
+  min-width: 150px;
+  padding: 18px 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.admin-application-summary-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.admin-application-summary-card strong {
+  color: #111827;
+  font-size: 26px;
+}
+
+/* ---------- Application List ---------- */
+
+.admin-applications-list {
+  display: grid;
+  gap: 20px;
+}
+
+.admin-application-card {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.admin-application-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 25px;
+  border-bottom: 1px solid #eef0f2;
+}
+
+.admin-application-hotel-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-application-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #f0f2f4;
+}
+
+.admin-application-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  background: #e8f5ee;
+  color: #168044;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.admin-application-hotel-info h2 {
+  margin: 0 0 5px;
+  color: #111827;
+  font-size: 20px;
+}
+
+.admin-application-hotel-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ---------- Status ---------- */
+
+.admin-application-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.admin-application-status.pending {
+  background: #fff4d6;
+  color: #a16207;
+}
+
+.admin-application-status.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.admin-application-status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---------- Card Body ---------- */
+
+.admin-application-card-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 25px;
+}
+
+.admin-application-info {
+  min-width: 0;
+}
+
+.admin-application-info-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-application-info-value {
+  margin: 0;
+  color: #1f2937;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+/* ---------- Card Footer ---------- */
+
+.admin-application-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 25px;
+  border-top: 1px solid #eef0f2;
+  background: #fafafa;
+}
+
+.admin-application-date {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.admin-application-review-button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  background: #168044;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-application-review-button:hover {
+  background: #126b38;
+  transform: translateY(-1px);
+}
+
+.admin-application-review-button:active {
+  transform: translateY(0);
+}
+
+/* ---------- Empty State ---------- */
+
+.admin-applications-empty {
+  padding: 70px 30px;
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.admin-applications-empty h2 {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 22px;
+}
+
+.admin-applications-empty p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* ---------- Error ---------- */
+
+.admin-applications-error {
+  padding: 16px 20px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ---------- Loading ---------- */
+
+.admin-applications-loading {
+  padding: 70px 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .admin-application-card-body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-applications {
+    padding: 35px 15px 50px;
+  }
+
+  .admin-applications-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-applications-header h1 {
+    font-size: 30px;
+  }
+
+  .admin-applications-summary {
+    flex-wrap: wrap;
+  }
+
+  .admin-application-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-application-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-application-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-application-review-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-application-hotel-info {
+    align-items: flex-start;
+  }
+
+  .admin-application-logo,
+  .admin-application-logo-placeholder {
+    width: 45px;
+    height: 45px;
+  }
+
+  .admin-application-hotel-info h2 {
+    font-size: 17px;
+  }
+}
