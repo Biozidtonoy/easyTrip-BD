@@ -45,6 +45,22 @@ def get_hotels(
         db.scalars(query).all()
     )
 
+
+def get_hotels_by_owner_id(
+    db: Session,
+    owner_id: int,
+) -> list[Hotel]:
+
+    statement = select(Hotel).where(
+        Hotel.owner_id == owner_id
+    )
+
+    return list(
+        db.scalars(statement).all()
+    )
+
+
+
 def update_hotel(db: Session,hotel: Hotel,hotel_data: HotelUpdate,image: str | None = None,) -> Hotel:
     update_data = hotel_data.model_dump(
         exclude_unset=True

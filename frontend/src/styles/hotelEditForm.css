@@ -1,0 +1,321 @@
+
+
+.owner-hotel-edit-form {
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+.owner-hotel-edit-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+
+.owner-hotel-edit-form-header span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #168044;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+.owner-hotel-edit-form-header h2 {
+  margin: 0 0 6px;
+
+  color: #111827;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+
+.owner-hotel-edit-form-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+.owner-hotel-edit-form-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #f3f4f6;
+
+  color: #374151;
+
+  font-size: 24px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+
+.owner-hotel-edit-form-close:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+
+.owner-hotel-edit-form-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+
+.owner-hotel-edit-form form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+.owner-hotel-edit-form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.owner-hotel-edit-form-group label {
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.owner-hotel-edit-form-group input,
+.owner-hotel-edit-form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.owner-hotel-edit-form-group input:focus,
+.owner-hotel-edit-form-group textarea:focus {
+  border-color: #168044;
+
+  box-shadow: 0 0 0 3px rgba(22, 128, 68, 0.1);
+}
+
+
+.owner-hotel-edit-form-group textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+
+.owner-hotel-edit-form-group input[type="file"] {
+  padding: 9px;
+
+  cursor: pointer;
+}
+
+
+.owner-hotel-edit-form-group small {
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+
+
+.owner-hotel-edit-form-row {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+}
+
+
+
+
+.owner-hotel-edit-current-image {
+  width: 100%;
+
+  max-height: 180px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  border: 1px solid #e5e7eb;
+
+  margin-top: 5px;
+}
+
+
+
+
+.owner-hotel-edit-form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #eef0f2;
+}
+
+
+.owner-hotel-edit-form-actions button {
+  padding: 10px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+.owner-hotel-edit-cancel-button {
+  background: #f3f4f6;
+
+  color: #374151;
+}
+
+
+.owner-hotel-edit-cancel-button:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+
+.owner-hotel-edit-submit-button {
+  background: #168044;
+
+  color: #ffffff;
+}
+
+
+.owner-hotel-edit-submit-button:hover:not(:disabled) {
+  background: #126b38;
+}
+
+
+.owner-hotel-edit-form-actions button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+
+
+.owner-hotel-edit-form::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.owner-hotel-edit-form::-webkit-scrollbar-track {
+  background: #f3f4f6;
+
+  border-radius: 10px;
+}
+
+
+.owner-hotel-edit-form::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+
+  border-radius: 10px;
+}
+
+
+
+@media (max-width: 650px) {
+  .owner-hotel-edit-form {
+    max-height: 92vh;
+
+    padding: 22px;
+  }
+
+  .owner-hotel-edit-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-hotel-edit-form-actions {
+    flex-direction: column;
+  }
+
+  .owner-hotel-edit-form-actions button {
+    width: 100%;
+  }
+}

@@ -54,10 +54,10 @@ export const getNavigationLinks = (
           path: "/owner/dashboard",
         },
 
-        {
-          label: "My Hotels",
-          path: "/owner/hotels",
-        },
+        // {
+        //   label: "My Hotels",
+        //   path: "/owner/hotels",
+        // },
       ];
 
     case "admin":

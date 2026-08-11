@@ -19,6 +19,7 @@ from app.services.hotel import (
     create_hotel_service,
     get_hotel_service,
     list_hotels_service,
+    get_my_hotels_service,
     update_hotel_service,
     delete_hotel_service,
 )
@@ -74,6 +75,24 @@ def get_hotels(
         db,
         destination_id,
     )
+
+
+
+@router.get(
+    "/owner/me",
+    response_model=list[HotelResponse],
+)
+def get_my_hotels(
+    current_user: User = Depends(
+        require_roles(UserRole.HOTEL_OWNER)
+    ),
+    db: Session = Depends(get_db),
+):
+    return get_my_hotels_service(
+        db=db,
+        current_user=current_user,
+    )
+
 
 
 @router.get("/{hotel_id}",response_model=HotelResponse,)

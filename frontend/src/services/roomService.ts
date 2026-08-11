@@ -1,6 +1,11 @@
 import api from "../api/axios";
 
-import type { Room } from "../types/room";
+import type {
+  Room,
+  RoomCreate,
+  RoomUpdate,
+} from "../types/room";
+
 
 export const getRoomsByHotel = async (
   hotelId: number
@@ -12,6 +17,7 @@ export const getRoomsByHotel = async (
   return response.data;
 };
 
+
 export const getRoomById = async (
   roomId: number
 ): Promise<Room> => {
@@ -20,4 +26,38 @@ export const getRoomById = async (
   );
 
   return response.data;
+};
+
+
+export const createRoom = async (
+  roomData: RoomCreate
+): Promise<Room> => {
+  const response = await api.post<Room>(
+    "/rooms",
+    roomData
+  );
+
+  return response.data;
+};
+
+
+export const updateRoom = async (
+  roomId: number,
+  roomData: RoomUpdate
+): Promise<Room> => {
+  const response = await api.patch<Room>(
+    `/rooms/${roomId}`,
+    roomData
+  );
+
+  return response.data;
+};
+
+
+export const deleteRoom = async (
+  roomId: number
+): Promise<void> => {
+  await api.delete(
+    `/rooms/${roomId}`
+  );
 };

@@ -1,0 +1,811 @@
+/* ==================================================
+   OWNER DASHBOARD
+================================================== */
+
+.owner-dashboard {
+  min-height: calc(100vh - 160px);
+
+  padding: 45px 20px 70px;
+
+  background: #f7f8fa;
+}
+
+.owner-dashboard-container {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.owner-dashboard-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+.owner-dashboard-badge {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: #e8f5ee;
+
+  color: #168044;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.owner-dashboard-header h1 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.owner-dashboard-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 15px;
+}
+
+
+/* ==================================================
+   CREATE HOTEL BUTTON
+================================================== */
+
+.owner-dashboard-create-button {
+  flex-shrink: 0;
+
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #168044;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.owner-dashboard-create-button:hover {
+  background: #126b39;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(22, 128, 68, 0.18);
+}
+
+.owner-dashboard-create-button:active {
+  transform: translateY(0);
+}
+
+
+/* ==================================================
+   OVERVIEW
+================================================== */
+
+.owner-dashboard-overview {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-bottom: 35px;
+}
+
+.owner-dashboard-stat-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 22px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.owner-dashboard-stat-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #e8f5ee;
+
+  color: #168044;
+}
+
+.owner-dashboard-stat-card span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.owner-dashboard-stat-card strong {
+  color: #111827;
+
+  font-size: 25px;
+}
+
+
+/* ==================================================
+   HOTEL SECTION
+================================================== */
+
+.owner-dashboard-section {
+  margin-top: 10px;
+}
+
+.owner-dashboard-section-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.owner-dashboard-section-header h2 {
+  margin: 0 0 5px;
+
+  color: #111827;
+
+  font-size: 24px;
+}
+
+.owner-dashboard-section-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+/* ==================================================
+   HOTEL GRID
+================================================== */
+
+.owner-dashboard-hotel-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* ==================================================
+   HOTEL CARD
+================================================== */
+
+.owner-dashboard-hotel-card {
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  min-width: 0;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.owner-dashboard-hotel-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==================================================
+   HOTEL IMAGE
+================================================== */
+
+.owner-dashboard-hotel-image-wrapper {
+  width: 100%;
+
+  height: 220px;
+
+  overflow: hidden;
+
+  background: #eef0f2;
+}
+
+.owner-dashboard-hotel-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.35s ease;
+}
+
+.owner-dashboard-hotel-card:hover
+.owner-dashboard-hotel-image {
+  transform: scale(1.02);
+}
+
+
+/* ==================================================
+   HOTEL CONTENT
+================================================== */
+
+.owner-dashboard-hotel-content {
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 22px;
+}
+
+.owner-dashboard-hotel-content h3 {
+  margin: 0 0 10px;
+
+  color: #111827;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+
+/* ==================================================
+   HOTEL DESCRIPTION
+================================================== */
+
+.owner-dashboard-hotel-description {
+  min-height: 48px;
+
+  margin: 0 0 15px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* ==================================================
+   LOCATION
+================================================== */
+
+.owner-dashboard-hotel-location {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 8px;
+
+  color: #168044;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.owner-dashboard-hotel-location svg {
+  flex-shrink: 0;
+}
+
+
+/* ==================================================
+   ADDRESS
+================================================== */
+
+.owner-dashboard-hotel-address {
+  min-height: 20px;
+
+  margin-bottom: 18px;
+
+  color: #4b5563;
+
+  font-size: 14px;
+}
+
+
+/* ==================================================
+   HOTEL FOOTER
+================================================== */
+
+.owner-dashboard-hotel-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: auto;
+
+  padding: 15px 0;
+
+  border-top: 1px solid #eef0f2;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   HOTEL ACTIONS
+================================================== */
+
+/*
+   The important part:
+
+   Edit       -> compact
+   Delete     -> compact
+   Manage     -> takes remaining space
+*/
+
+.owner-dashboard-hotel-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #eef0f2;
+}
+
+
+/* ==================================================
+   COMMON ACTION BUTTON
+================================================== */
+
+.owner-dashboard-edit-button,
+.owner-dashboard-delete-button,
+.owner-dashboard-manage-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  height: 42px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* ==================================================
+   EDIT BUTTON
+================================================== */
+
+.owner-dashboard-edit-button {
+  flex: 0 0 82px;
+
+  background: #eef5ff;
+
+  color: #2563eb;
+}
+
+.owner-dashboard-edit-button:hover:not(:disabled) {
+  background: #e0ebff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.12);
+}
+
+.owner-dashboard-edit-button:active:not(:disabled) {
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   DELETE BUTTON
+================================================== */
+
+.owner-dashboard-delete-button {
+  flex: 0 0 90px;
+
+  background: #fff0f0;
+
+  color: #dc2626;
+}
+
+.owner-dashboard-delete-button:hover:not(:disabled) {
+  background: #ffe0e0;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(220, 38, 38, 0.12);
+}
+
+.owner-dashboard-delete-button:active:not(:disabled) {
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   MANAGE ROOMS BUTTON
+================================================== */
+
+.owner-dashboard-manage-button {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 0 16px;
+
+  background: #168044;
+
+  color: #ffffff;
+}
+
+.owner-dashboard-manage-button:hover:not(:disabled) {
+  background: #126b39;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(22, 128, 68, 0.18);
+}
+
+.owner-dashboard-manage-button:active:not(:disabled) {
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   DISABLED ACTIONS
+================================================== */
+
+.owner-dashboard-edit-button:disabled,
+.owner-dashboard-delete-button:disabled,
+.owner-dashboard-manage-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   EMPTY STATE
+================================================== */
+
+.owner-dashboard-empty {
+  padding: 60px 25px;
+
+  border: 1px dashed #d1d5db;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  text-align: center;
+}
+
+.owner-dashboard-empty-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  background: #e8f5ee;
+
+  color: #168044;
+}
+
+.owner-dashboard-empty h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 20px;
+}
+
+.owner-dashboard-empty p {
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.owner-dashboard-empty-button {
+  margin-top: 15px;
+
+  padding: 11px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #168044;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.owner-dashboard-empty-button:hover {
+  background: #126b39;
+
+  transform: translateY(-1px);
+}
+
+
+/* ==================================================
+   LOADING
+================================================== */
+
+.owner-dashboard-loading {
+  padding: 100px 20px;
+
+  color: #6b7280;
+
+  text-align: center;
+}
+
+
+/* ==================================================
+   ERROR
+================================================== */
+
+.owner-dashboard-error {
+  padding: 35px;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 14px;
+
+  background: #fef2f2;
+}
+
+.owner-dashboard-error h1 {
+  margin: 0 0 8px;
+
+  color: #991b1b;
+
+  font-size: 22px;
+}
+
+.owner-dashboard-error p {
+  margin: 0;
+
+  color: #b91c1c;
+}
+
+
+/* ==================================================
+   HOTEL FORM OVERLAY
+================================================== */
+
+.owner-hotel-form-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  overflow-y: auto;
+}
+
+
+/* ==================================================
+   RESPONSIVE - TABLET
+================================================== */
+
+@media (max-width: 850px) {
+
+  .owner-dashboard-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-dashboard-hotel-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ==================================================
+   RESPONSIVE - MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .owner-dashboard-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .owner-dashboard-create-button {
+    width: 100%;
+  }
+
+  .owner-dashboard-hotel-actions {
+    flex-wrap: wrap;
+  }
+
+  .owner-dashboard-edit-button {
+    flex: 1;
+  }
+
+  .owner-dashboard-delete-button {
+    flex: 1;
+  }
+
+  .owner-dashboard-manage-button {
+    flex: 1 0 100%;
+
+    width: 100%;
+  }
+
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media (max-width: 550px) {
+
+  .owner-dashboard {
+    padding: 30px 15px 50px;
+  }
+
+  .owner-dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .owner-dashboard-hotel-image-wrapper {
+    height: 190px;
+  }
+
+  .owner-dashboard-hotel-content {
+    padding: 18px;
+  }
+
+  .owner-dashboard-hotel-footer {
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .owner-dashboard-hotel-actions {
+    gap: 8px;
+  }
+
+  .owner-dashboard-edit-button,
+  .owner-dashboard-delete-button {
+    min-width: 0;
+
+    padding: 0 10px;
+  }
+
+}
