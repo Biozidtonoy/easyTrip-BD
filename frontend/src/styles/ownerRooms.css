@@ -531,7 +531,15 @@
 
     padding-top: 30px;
   }
+    .owner-room-card-actions {
+    flex-direction: column;
+  }
 
+  .owner-room-edit-button,
+  .owner-room-image-button,
+  .owner-room-delete-button {
+    width: 100%;
+  }
 }
 
 /* ---------- Room Actions ---------- */
@@ -631,4 +639,46 @@
     width: 100%;
   }
 
+}
+
+.owner-room-image-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  flex: 1;
+
+  padding: 10px 12px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #e8f5ee;
+
+  color: #168044;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.owner-room-image-button:hover:not(:disabled) {
+  background: #dcefe5;
+
+  transform: translateY(-1px);
+}
+
+.owner-room-image-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
 }

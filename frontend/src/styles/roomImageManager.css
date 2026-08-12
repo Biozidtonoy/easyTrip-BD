@@ -1,0 +1,411 @@
+.room-image-manager {
+  width: 100%;
+  max-width: 720px;
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ---------- Header ---------- */
+
+.room-image-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 25px;
+}
+
+.room-image-manager-header span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #168044;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.room-image-manager-header h2 {
+  margin: 0 0 6px;
+
+  color: #111827;
+
+  font-size: 24px;
+}
+
+.room-image-manager-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.room-image-manager-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #f3f4f6;
+
+  color: #374151;
+
+  cursor: pointer;
+}
+
+.room-image-manager-close:hover {
+  background: #e5e7eb;
+}
+
+
+/* ---------- Upload ---------- */
+
+.room-image-upload {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 25px;
+
+  padding: 16px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  background: #f9fafb;
+}
+
+.room-image-upload-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #e8f5ee;
+
+  color: #168044;
+}
+
+.room-image-upload-content {
+  flex: 1;
+}
+
+.room-image-upload-content strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #1f2937;
+
+  font-size: 14px;
+}
+
+.room-image-upload-content p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+/* ---------- Upload Button ---------- */
+
+.room-image-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  background: #168044;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.room-image-upload-button:hover {
+  background: #126b39;
+}
+
+.room-image-upload-button.disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+.room-image-upload-button input {
+  display: none;
+}
+
+
+/* ---------- Image Grid ---------- */
+
+.room-image-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
+}
+
+
+/* ---------- Image Card ---------- */
+
+.room-image-item {
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+}
+
+.room-image-preview {
+  width: 100%;
+  height: 190px;
+
+  overflow: hidden;
+
+  background: #f3f4f6;
+}
+
+.room-image-preview img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* ---------- Image Actions ---------- */
+
+.room-image-actions {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 8px;
+
+  padding: 12px;
+}
+
+.room-image-edit-button,
+.room-image-delete-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 9px 10px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.room-image-edit-button {
+  background: #eef5ff;
+
+  color: #2563eb;
+}
+
+.room-image-edit-button:hover {
+  background: #e0ebff;
+}
+
+.room-image-delete-button {
+  background: #fee2e2;
+
+  color: #b91c1c;
+}
+
+.room-image-delete-button:hover {
+  background: #fecaca;
+}
+
+.room-image-edit-button input {
+  display: none;
+}
+
+.room-image-edit-button:has(input:disabled),
+.room-image-delete-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
+
+
+/* ---------- Empty ---------- */
+
+.room-image-empty {
+  padding: 45px 20px;
+
+  border: 1px dashed #d1d5db;
+
+  border-radius: 12px;
+
+  background: #fafafa;
+
+  text-align: center;
+
+  color: #9ca3af;
+}
+
+.room-image-empty svg {
+  margin-bottom: 10px;
+}
+
+.room-image-empty h3 {
+  margin: 0 0 5px;
+
+  color: #374151;
+
+  font-size: 17px;
+}
+
+.room-image-empty p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+
+/* ---------- Footer ---------- */
+
+.room-image-manager-footer {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 25px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #eef0f2;
+}
+
+.room-image-manager-footer span {
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.room-image-manager-footer button {
+  padding: 10px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #168044;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.room-image-manager-footer button:hover {
+  background: #126b39;
+}
+
+.room-image-manager-footer button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+
+  .room-image-manager {
+    max-width: none;
+
+    padding: 22px;
+  }
+
+  .room-image-upload {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .room-image-upload-button {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  .room-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .room-image-manager-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+  }
+
+  .room-image-manager-footer button {
+    width: 100%;
+  }
+}
