@@ -11,6 +11,7 @@ from app.crud.booking import (
     get_bookings,
     get_bookings_by_room,
     get_bookings_by_traveler,
+    get_bookings_by_hotel_owner,
     update_booking,
 )
 
@@ -173,6 +174,106 @@ def get_booking_service(
 
     return booking
 
+def get_owner_booking(
+    db: Session,
+    booking_id: int,
+    current_user: User,
+) -> Booking:
+
+    booking = get_booking_by_id(
+        db,
+        booking_id,
+    )
+
+    if booking is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found.",
+        )
+
+    if current_user.role != UserRole.HOTEL_OWNER:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only hotel owners can manage bookings.",
+        )
+
+    if booking.room.hotel.owner_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You can only manage bookings for your own hotels.",
+        )
+
+    return booking
+
+
+
+def confirm_booking_service(
+    db: Session,
+    booking_id: int,
+    current_user: User,
+):
+    booking = get_owner_booking(
+        db,
+        booking_id,
+        current_user,
+    )
+
+    if booking.status != BookingStatus.PENDING:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only pending bookings can be confirmed.",
+        )
+
+    booking.status = BookingStatus.CONFIRMED
+    booking.cancellation_reason = None
+
+    db.commit()
+    db.refresh(booking)
+
+    return get_booking_by_id(
+        db,
+        booking_id,
+    )
+
+def reject_booking_service(
+    db: Session,
+    booking_id: int,
+    cancellation_reason: str,
+    current_user: User,
+):
+    booking = get_owner_booking(
+        db,
+        booking_id,
+        current_user,
+    )
+
+    if booking.status != BookingStatus.PENDING:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only pending bookings can be rejected.",
+        )
+
+    reason = cancellation_reason.strip()
+
+    if not reason:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cancellation reason is required.",
+        )
+
+    booking.status = BookingStatus.CANCELLED
+    booking.cancellation_reason = reason
+
+    db.commit()
+    db.refresh(booking)
+
+    return get_booking_by_id(
+        db,
+        booking_id,
+    )
+
+
+
 def list_bookings_service(
     db: Session,
     current_user: User,
@@ -184,6 +285,23 @@ def list_bookings_service(
         db,
         current_user.id,
     )
+
+
+def list_owner_bookings_service(
+    db: Session,
+    current_user: User,
+):
+    if current_user.role != UserRole.HOTEL_OWNER:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only hotel owners can access owner bookings.",
+        )
+
+    return get_bookings_by_hotel_owner(
+        db,
+        current_user.id,
+    )
+
 
 def update_booking_service(
     db: Session,
@@ -201,8 +319,14 @@ def update_booking_service(
 
     if booking.traveler_id != current_user.id:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You are not allowed to update this booking.",
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail="You are not allowed to update this booking.",
+    )
+
+    if booking.status != BookingStatus.PENDING:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only pending bookings can be updated.",
         )
 
     check_in = (

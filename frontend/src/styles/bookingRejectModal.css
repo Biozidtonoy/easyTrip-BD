@@ -1,0 +1,259 @@
+/* =========================================================
+   Booking Reject Modal
+========================================================= */
+
+.booking-reject-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(17, 24, 39, 0.55);
+}
+
+
+/* =========================================================
+   Modal
+========================================================= */
+
+.booking-reject-modal {
+  width: 100%;
+  max-width: 500px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   Header
+========================================================= */
+
+.booking-reject-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  padding: 22px;
+
+  border-bottom: 1px solid #eef0f2;
+}
+
+.booking-reject-modal-label {
+  display: inline-block;
+
+  margin-bottom: 7px;
+
+  color: #b91c1c;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.booking-reject-modal-header h2 {
+  margin: 0 0 6px;
+
+  color: #111827;
+
+  font-size: 22px;
+}
+
+.booking-reject-modal-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   Close Button
+========================================================= */
+
+.booking-reject-modal-close {
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #f3f4f6;
+  color: #6b7280;
+
+  font-size: 22px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.booking-reject-modal-close:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+
+/* =========================================================
+   Form
+========================================================= */
+
+.booking-reject-modal form {
+  padding: 22px;
+}
+
+.booking-reject-modal-group {
+  margin-bottom: 22px;
+}
+
+.booking-reject-modal-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.booking-reject-modal-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  resize: vertical;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.booking-reject-modal-group textarea:focus {
+  border-color: #168044;
+
+  box-shadow: 0 0 0 3px rgba(22, 128, 68, 0.12);
+}
+
+.booking-reject-modal-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+
+/* =========================================================
+   Actions
+========================================================= */
+
+.booking-reject-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+.booking-reject-modal-cancel,
+.booking-reject-modal-confirm {
+  padding: 10px 17px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.booking-reject-modal-cancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.booking-reject-modal-cancel:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.booking-reject-modal-confirm {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.booking-reject-modal-confirm:hover:not(:disabled) {
+  background: #b91c1c;
+
+  transform: translateY(-1px);
+}
+
+.booking-reject-modal-confirm:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+.booking-reject-modal-cancel:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 550px) {
+  .booking-reject-modal-header {
+    padding: 18px;
+  }
+
+  .booking-reject-modal form {
+    padding: 18px;
+  }
+
+  .booking-reject-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .booking-reject-modal-cancel,
+  .booking-reject-modal-confirm {
+    width: 100%;
+  }
+}

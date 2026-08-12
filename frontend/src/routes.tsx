@@ -18,6 +18,8 @@ import AdminDestinationsPage from "./pages/AdminDestinationsPage";
 import AdminApplicationsPage from "./pages/AdminApplicationsPage";
 import AdminApplicationDetailsPage from "./pages/AdminApplicationDetailsPage";
 import OwnerRoomsPage from "./pages/OwnerRoomsPage";
+import OwnerBookingsPage from "./pages/OwnerBookingsPage";
+
 
 const routes = [
   // ---------- Routes with Navbar & Footer ----------
@@ -96,6 +98,11 @@ const routes = [
             path: "/owner/hotels/:hotelId/rooms",
             element: <OwnerRoomsPage />,
           },
+          {
+            path:"/owner/bookings",
+            element:<OwnerBookingsPage />,
+          }
+
         ],
       },
 

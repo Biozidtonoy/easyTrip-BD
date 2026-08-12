@@ -44,3 +44,36 @@ export const cancelBooking = async (
 ): Promise<void> => {
   await api.delete(`/bookings/${bookingId}`);
 };
+
+export const getOwnerBookings = async (): Promise<Booking[]> => {
+  const response = await api.get<Booking[]>(
+    "/bookings/owner"
+  );
+
+  return response.data;
+};
+
+export const confirmBooking = async (
+  bookingId: number
+): Promise<Booking> => {
+  const response = await api.patch<Booking>(
+    `/bookings/${bookingId}/confirm`
+  );
+
+  return response.data;
+};
+
+
+export const rejectBooking = async (
+  bookingId: number,
+  cancellationReason: string
+): Promise<Booking> => {
+  const response = await api.patch<Booking>(
+    `/bookings/${bookingId}/reject`,
+    {
+      cancellation_reason: cancellationReason,
+    }
+  );
+
+  return response.data;
+};
