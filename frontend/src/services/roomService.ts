@@ -4,6 +4,7 @@ import type {
   Room,
   RoomCreate,
   RoomUpdate,
+  RoomImage,
 } from "../types/room";
 
 
@@ -59,5 +60,58 @@ export const deleteRoom = async (
 ): Promise<void> => {
   await api.delete(
     `/rooms/${roomId}`
+  );
+};
+
+
+export const uploadRoomImage = async (
+  roomId: number,
+  image: File
+): Promise<RoomImage> => {
+  const formData = new FormData();
+
+  formData.append(
+    "image",
+    image
+  );
+
+  const response = await api.post<RoomImage>(
+    `/rooms/${roomId}/images`,
+    formData
+  );
+
+  return response.data;
+};
+
+
+
+export const updateRoomImage = async (
+  roomId: number,
+  imageId: number,
+  image: File
+): Promise<RoomImage> => {
+  const formData = new FormData();
+
+  formData.append(
+    "image",
+    image
+  );
+
+  const response = await api.put<RoomImage>(
+    `/rooms/${roomId}/images/${imageId}`,
+    formData
+  );
+
+  return response.data;
+};
+
+
+
+export const deleteRoomImage = async (
+  roomId: number,
+  imageId: number
+): Promise<void> => {
+  await api.delete(
+    `/rooms/${roomId}/images/${imageId}`
   );
 };
