@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.models.booking import Booking
 from app.models.room import Room
+from app.models.hotel import Hotel
 from app.schemas.booking import BookingCreate, BookingUpdate
 
 
@@ -106,6 +107,33 @@ def get_bookings_by_traveler(
         .all()
     )
 
+def get_bookings_by_hotel_owner(
+    db: Session,
+    owner_id: int,
+) -> list[Booking]:
+
+    statement = (
+        select(Booking)
+        .join(Booking.room)
+        .join(Room.hotel)
+        .options(
+            joinedload(Booking.room)
+                .joinedload(Room.hotel),
+
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+        .where(
+            Hotel.owner_id == owner_id
+        )
+    )
+
+    return list(
+        db.execute(statement)
+        .unique()
+        .scalars()
+        .all()
+    )
 
 def get_bookings_by_room(
     db: Session,
@@ -119,6 +147,35 @@ def get_bookings_by_room(
         ).all()
     )
 
+def get_bookings_by_hotel_owner(
+    db: Session,
+    owner_id: int,
+) -> list[Booking]:
+
+    statement = (
+        select(Booking)
+        .join(Booking.room)
+        .join(Room.hotel)
+        .options(
+            joinedload(Booking.room)
+                .joinedload(Room.hotel),
+
+            joinedload(Booking.room)
+                .joinedload(Room.images),
+        )
+        .where(
+            Room.hotel.has(
+                owner_id=owner_id
+            )
+        )
+    )
+
+    return list(
+        db.execute(statement)
+        .unique()
+        .scalars()
+        .all()
+    )
 
 def update_booking(
     db: Session,

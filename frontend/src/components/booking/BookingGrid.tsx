@@ -19,14 +19,24 @@ const BookingGrid = ({
 }: BookingGridProps) => {
   return (
     <section className="booking-grid">
-      {bookings.map((booking) => (
-        <BookingCard
-          key={booking.id}
-          booking={booking}
-          onCancel={onCancel}
-          onEdit={onEdit}
-        />
-      ))}
+      {bookings.map((booking) => {
+        const canEdit = booking.status === "PENDING";
+
+        const canCancel =
+          booking.status === "PENDING" ||
+          booking.status === "CONFIRMED";
+
+        return (
+          <BookingCard
+            key={booking.id}
+            booking={booking}
+            onCancel={onCancel}
+            onEdit={onEdit}
+            canEdit={canEdit}
+            canCancel={canCancel}
+          />
+        );
+      })}
     </section>
   );
 };

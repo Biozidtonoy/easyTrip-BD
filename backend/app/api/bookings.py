@@ -8,6 +8,7 @@ from app.schemas.booking import (
     BookingCreate,
     BookingResponse,
     BookingUpdate,
+    BookingRejection,
     BookingListResponse,
 )
 from app.services.booking import (
@@ -15,7 +16,10 @@ from app.services.booking import (
     delete_booking_service,
     get_booking_service,
     list_bookings_service,
+    list_owner_bookings_service,
     update_booking_service,
+    confirm_booking_service,
+    reject_booking_service,
 )
 
 router = APIRouter(
@@ -51,6 +55,54 @@ def list_bookings(
         db=db,
         current_user=current_user,
     )
+
+# hotel owner bookings 
+@router.get(
+    "/owner",
+    response_model=list[BookingListResponse],
+)
+def list_owner_bookings(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return list_owner_bookings_service(
+        db=db,
+        current_user=current_user,
+    )
+
+@router.patch(
+    "/{booking_id}/confirm",
+    response_model=BookingListResponse,
+)
+def confirm_booking(
+    booking_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return confirm_booking_service(
+        db=db,
+        booking_id=booking_id,
+        current_user=current_user,
+    )
+
+@router.patch(
+    "/{booking_id}/reject",
+    response_model=BookingListResponse,
+)
+def reject_booking(
+    booking_id: int,
+    rejection_data: BookingRejection,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return reject_booking_service(
+        db=db,
+        booking_id=booking_id,
+        cancellation_reason=rejection_data.cancellation_reason,
+        current_user=current_user,
+    )
+
+
 
 @router.get(
     "/{booking_id}",

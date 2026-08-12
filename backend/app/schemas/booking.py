@@ -19,7 +19,10 @@ class BookingUpdate(BaseModel):
     check_out_date: date | None = None
     special_requests: str | None = None
 
+class BookingRejection(BaseModel):
+    cancellation_reason: str
 
+    
 class BookingResponse(BaseModel):
     id: int
     booking_reference: str
